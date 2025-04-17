@@ -5,12 +5,29 @@ if (!localStorage.getItem("userCart")) {
 }
 
 function setup() {
+    let cart = JSON.parse(localStorage.getItem("userCart"));
+    
     for(let i = 0; i < ITEMS.length; i++) {
-        
+        let buttonNode = document.getElementById("add-btn " + ITEMS[i].id);
+        buttonNode.style.backgroundColor = "light";
+        buttonNode.addEventListener("click", () => {
+            if (buttonNode.style.backgroundColor === "light") {
+                buttonNode.style.backgroundColor = "grey";
+                buttonNode.innerText = "Added"
+                localStorage.setItem("userCart", JSON.stringify(favorites));
+            } else {
+                buttonNode.style.backgroundColor = "light";
+            }
+            if (cart.includes(ITEMS[i].id)) {
+                cart = cart.filter(f => f !== ITEMS[i].id);
+            } else {
+                cart.push(ITEMS[i]);
+            }
+    });
     }
 
     let parentNode = document.getElementById("cart");
-    let cart = JSON.parse(localStorage.getItem("userCart"));
+    
 
     for(let i = 0; i < ITEMS.length; i++) {
         let newDivNode = document.createElement("div");
@@ -39,26 +56,6 @@ function setup() {
             parentNode.appendChild(newCardDivNode);
         }
     }
-}
-
-function addToCart(itemID) {  
-    let buttonNode = document.getElementById("add-btn " + itemID);
-    alert("running add to cart" + buttonNode.style.backgroundColor)
-    if (buttonNode.style.backgroundColor === "light") {
-        buttonNode.style.backgroundColor = "grey";
-        buttonNode.innerText = "Added"
-    } else {
-        buttonNode.style.backgroundColor = "light";
-    }
-
-    let cart = JSON.parse(localStorage.getItem("userCart"));
-    if (cart.includes(itemID)) {
-        cart = cart.filter(f => f !== courseData.id);
-    } else {
-        cart.push(ITEMS.find(x => x.id === itemID));
-    }
-    localStorage.setItem("userCart", JSON.stringify(favorites));
-    setup();
 }
 
 window.onload = setup;
