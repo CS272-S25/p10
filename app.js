@@ -4,6 +4,12 @@ if (!localStorage.getItem("userCart")) {
     localStorage.setItem("userCart", JSON.stringify([]));
 }
 
+/*
+* This function sets up the accesories, apparel, shoes, and checkout pages.
+* For accesories, apparel, and shoes; this function adds event listeners to the buttons,
+* allowing them to add items to the cart.
+* For checkout; this function calls the setupCart function.
+*/
 function setup() {
     //start and end determine which buttons will be set up later in the function, if any
     let start;
@@ -15,7 +21,6 @@ function setup() {
         start = 4;
         end = 8;
        } else if (window.location.href.match('shoes.html') != null) {
-        alert("shoes")
         start = 8;
         end = 12;
        } else if (window.location.href.match('checkout.html')) {
@@ -53,6 +58,9 @@ function setup() {
 
 }
 
+/*
+* This function loads in the items from the cart into the checkout.
+*/
 function setupCart() {
     let parentNode = document.getElementById("cart");
     
