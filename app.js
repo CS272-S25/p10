@@ -19,6 +19,7 @@ function setup() {
         start = 8;
         end = 12;
        } else if (window.location.href.match('checkout.html')) {
+        alert("checkout")
         start = 0;
         end = 0;
         setupCart();
@@ -31,18 +32,15 @@ function setup() {
 
     //this loop sets up buttons based on the start and end values set earlier
     for(let i = start; i < end; i++) {
-        alert("loop start for " + ITEMS[i].id)
         let buttonNode = document.getElementById("add-btn " + ITEMS[i].id);
-        alert(document.getElementById("add-btn " + ITEMS[i].id).innerText)
-        buttonNode.style.backgroundColor = "light";
-        alert(document.getElementById("add-btn " + ITEMS[i].id).style.backgroundColor)
+        buttonNode.style.backgroundColor = "white";
         buttonNode.addEventListener("click", () => {
-            alert("running")
-            if (buttonNode.style.backgroundColor === "light") {
+            if (buttonNode.style.backgroundColor === "white") {
                 buttonNode.style.backgroundColor = "grey";
                 buttonNode.innerText = "Added"
             } else {
-                buttonNode.style.backgroundColor = "light";
+                buttonNode.style.backgroundColor = "white";
+                buttonNode.innerText = "Add To Cart"
             }
             if (cart.includes(ITEMS[i].id)) {
                 cart = cart.filter(f => f !== ITEMS[i].id);
