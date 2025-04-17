@@ -60,6 +60,7 @@ function setup() {
 
 /*
 * This function loads in the items from the cart into the checkout.
+* TODO: make this function work
 */
 function setupCart() {
     let parentNode = document.getElementById("cart");
