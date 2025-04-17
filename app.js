@@ -5,6 +5,10 @@ if (!localStorage.getItem("userCart")) {
 }
 
 function setup() {
+    for(let i = 0; i < ITEMS.length; i++) {
+        
+    }
+
     let parentNode = document.getElementById("cart");
     let cart = JSON.parse(localStorage.getItem("userCart"));
 
@@ -37,8 +41,8 @@ function setup() {
     }
 }
 
-function addToCart(itemID, buttonID) {  
-    let buttonNode = document.getElementById("add-btn " + buttonID);
+function addToCart(itemID) {  
+    let buttonNode = document.getElementById("add-btn " + itemID);
     alert("running add to cart" + buttonNode.style.backgroundColor)
     if (buttonNode.style.backgroundColor === "light") {
         buttonNode.style.backgroundColor = "grey";
