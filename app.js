@@ -9,37 +9,38 @@ function setup() {
     let start;
     let end;
     if (window.location.href.match('accessories.html') != null) {
-        let start = 0;
-        let end = 4;
+        start = 0;
+        end = 4;
        } else if (window.location.href.match('apparel.html') != null) {
-        let start = 4;
-        let end = 8;
+        start = 4;
+        end = 8;
        } else if (window.location.href.match('shoes.html') != null) {
-        let start = 8;
-        let end = 12;
+        alert("shoes")
+        start = 8;
+        end = 12;
        } else if (window.location.href.match('checkout.html')) {
-        let start = 0;
-        let end = 0;
+        start = 0;
+        end = 0;
         setupCart();
        } else {
-        let start = 0;
-        let end = 0; 
+        start = 0;
+        end = 0; 
        }
     alert("setting up")
     let cart = JSON.parse(localStorage.getItem("userCart"));
 
-    //this loop sets up buttons
+    //this loop sets up buttons based on the start and end values set earlier
     for(let i = start; i < end; i++) {
         alert("loop start for " + ITEMS[i].id)
         let buttonNode = document.getElementById("add-btn " + ITEMS[i].id);
-        alert(document.getElementById("add-btn acc_1").innerText)
+        alert(document.getElementById("add-btn " + ITEMS[i].id).innerText)
         buttonNode.style.backgroundColor = "light";
+        alert(document.getElementById("add-btn " + ITEMS[i].id).style.backgroundColor)
         buttonNode.addEventListener("click", () => {
             alert("running")
             if (buttonNode.style.backgroundColor === "light") {
                 buttonNode.style.backgroundColor = "grey";
                 buttonNode.innerText = "Added"
-                localStorage.setItem("userCart", JSON.stringify(favorites));
             } else {
                 buttonNode.style.backgroundColor = "light";
             }
@@ -48,6 +49,7 @@ function setup() {
             } else {
                 cart.push(ITEMS[i]);
             }
+            localStorage.setItem("userCart", JSON.stringify(cart));
     });
     }
 
@@ -56,7 +58,6 @@ function setup() {
 function setupCart() {
     let parentNode = document.getElementById("cart");
     
-
     for(let i = 0; i < ITEMS.length; i++) {
         let newDivNode = document.createElement("div");
         newDivNode.id = `item-${ITEMS[i].id}`;
@@ -84,9 +85,7 @@ function setupCart() {
             parentNode.appendChild(newCardDivNode);
         }
     }
+    localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
-accessories.onload = setupButtons(0,4); //makes sure the loop only parses through accessory elements
-apparel.onload = setupButtons(4,8); //makes sure the loop only parses through apparel elements
-shoes.onload = setupButtons(8,12); //makes sure the loop only parses through shoes elements
-checkout.onload = setupCart(); //makes sure checkout doesn't load in buttons
+window.onload = setup;
