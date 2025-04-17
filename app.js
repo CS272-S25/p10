@@ -4,10 +4,31 @@ if (!localStorage.getItem("userCart")) {
     localStorage.setItem("userCart", JSON.stringify([]));
 }
 
-function setupButtons(start, end) {
+function setup() {
+    //start and end determine which buttons will be set up later in the function, if any
+    let start;
+    let end;
+    if (window.location.href.match('accessories.html') != null) {
+        let start = 0;
+        let end = 4;
+       } else if (window.location.href.match('apparel.html') != null) {
+        let start = 4;
+        let end = 8;
+       } else if (window.location.href.match('shoes.html') != null) {
+        let start = 8;
+        let end = 12;
+       } else if (window.location.href.match('checkout.html')) {
+        let start = 0;
+        let end = 0;
+        setupCart();
+       } else {
+        let start = 0;
+        let end = 0; 
+       }
     alert("setting up")
     let cart = JSON.parse(localStorage.getItem("userCart"));
 
+    //this loop sets up buttons
     for(let i = start; i < end; i++) {
         alert("loop start for " + ITEMS[i].id)
         let buttonNode = document.getElementById("add-btn " + ITEMS[i].id);
@@ -29,6 +50,7 @@ function setupButtons(start, end) {
             }
     });
     }
+
 }
 
 function setupCart() {
