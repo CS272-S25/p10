@@ -21,27 +21,40 @@ function setup() {
 
             const newNameNode = document.createElement("h4");
             newNameNode.innerText = `${ITEMS[i].name}`;
+
+            const newBrandNode = document.createElement("h5");
+            newBrandNode.innerText = `${ITEMS[i].brand}`;
+
+            const newPriceNode = document.createElement("h5");
+            newPriceNode.innerText = `${ITEMS[i].price}`;
+
+            newCardDivNode.appendChild(newImgNode);
+            newCardDivNode.appendChild(newNameNode);
+            newCardDivNode.appendChild(newBrandNode);
+            newCardDivNode.appendChild(newPriceNode);
+            parentNode.appendChild(newCardDivNode);
         }
     }
 }
 
-function addToCart(itemID, buttonID) {
-    let buttonNode = document.getElementById(buttonID);
-    if (buttonNode.style.backgroundColor === "white") {
+function addToCart(itemID, buttonID) {  
+    let buttonNode = document.getElementById("add-btn " + buttonID);
+    alert("running add to cart" + buttonNode.style.backgroundColor)
+    if (buttonNode.style.backgroundColor === "light") {
         buttonNode.style.backgroundColor = "grey";
         buttonNode.innerText = "Added"
     } else {
-        buttonNode.style.backgroundColor = "white";
+        buttonNode.style.backgroundColor = "light";
     }
 
     let cart = JSON.parse(localStorage.getItem("userCart"));
-        if (cart.includes(cartDivNode.find(x => x.id === itemID))) {
-            favorites = favorites.filter(f => f !== courseData.id);
-        } else {
-            cart.push(cartDivNode.find(x => x.id === itemID));
-            
-        }
-        localStorage.setItem("favs", JSON.stringify(favorites));
+    if (cart.includes(itemID)) {
+        cart = cart.filter(f => f !== courseData.id);
+    } else {
+        cart.push(ITEMS.find(x => x.id === itemID));
+    }
+    localStorage.setItem("userCart", JSON.stringify(favorites));
+    setup();
 }
 
 window.onload = setup;

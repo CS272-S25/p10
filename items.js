@@ -1,6 +1,7 @@
 function getItems() {
     return {
         items: [
+            //these ids must be consistent across all files
             {id: "acc_1", image: "", name: "", brand: "", price: ""},
             {id: "acc_2", image: "", name: "", brand: "", price: ""},
             {id: "acc_3", image: "", name: "", brand: "", price: ""},
