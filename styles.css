@@ -1,8 +1,8 @@
 body {
-    font-size: 16px; 
-    color:white;
+    font-size: 16px;
+    color: white;
     background-color: #161616;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
 }
 
@@ -15,36 +15,52 @@ h1 {
     color: white;
 }
 
+/* Grid formatting for displying items */
 .container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
     background-color: #1f1f1f;
     padding: 20px;
 }
+
 .btn {
-    background-color:white
+    background-color: white
 }
-a.link:link
-{
-   color: white;
-   text-decoration: none;
+
+a.link:link {
+    color: white;
+    text-decoration: none;
 }
-a.link:visited
-{
-   color: white;
-   text-decoration: none;
+
+a.link:visited {
+    color: white;
+    text-decoration: none;
 }
-a.link:hover
-{
-   color: white;
-   text-decoration: none;
+
+a.link:hover {
+    color: white;
+    text-decoration: none;
 }
-a.link:active
-{
-   color: white;
-   text-decoration: none;
+
+a.link:active {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
 }
 
 .shoes img {
     max-width: 200px;
+}
+
+/* Navigation header */
+.nav-box {
+    border: 2px solid white;
+    border-radius: 15px;
+    background-color: #1a1a1a;
 }
