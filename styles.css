@@ -41,3 +41,7 @@ a.link:active
    color: white;
    text-decoration: none;
 }
+
+.shoes img {
+    max-width: 200px;
+}
