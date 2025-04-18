@@ -15,8 +15,15 @@ h1 {
     color: white;
 }
 
-/* Grid formatting for displying items */
 .container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #1f1f1f;
+    padding: 20px;
+  }
+  
+/* Grid formatting for displying items */
+.display-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
@@ -54,13 +61,65 @@ footer {
     margin-top: auto;
 }
 
+/* Images */
 .shoes img {
     max-width: 200px;
 }
 
 /* Navigation header */
 .nav-box {
+    width: 95%;
+    margin: 0 auto;
     border: 2px solid white;
     border-radius: 15px;
     background-color: #1a1a1a;
+}
+
+/* Drop down menu */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-left: 1rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 2rem;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #444;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Site title link */
+.site-title-link {
+    text-decoration: none;
+    color: inherit;
 }
