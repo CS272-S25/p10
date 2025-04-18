@@ -32,13 +32,17 @@ function setup() {
         start = 0;
         end = 0; 
        }
-    alert("setting up")
     let cart = JSON.parse(localStorage.getItem("userCart"));
 
     //this loop sets up buttons based on the start and end values set earlier
     for(let i = start; i < end; i++) {
         let buttonNode = document.getElementById("add-btn " + ITEMS[i].id);
-        buttonNode.style.backgroundColor = "white";
+        if (cart.includes(ITEMS[i].id)) {
+            buttonNode.style.backgroundColor = "grey";
+            buttonNode.innerText = "Added"
+        } else {
+            buttonNode.style.backgroundColor = "white";
+        }
         buttonNode.addEventListener("click", () => {
             if (buttonNode.style.backgroundColor === "white") {
                 buttonNode.style.backgroundColor = "grey";
@@ -48,9 +52,11 @@ function setup() {
                 buttonNode.innerText = "Add To Cart"
             }
             if (cart.includes(ITEMS[i].id)) {
+                alert("cart already has " + ITEMS[i].name)
                 cart = cart.filter(f => f !== ITEMS[i].id);
             } else {
-                cart.push(ITEMS[i]);
+                alert("adding " + ITEMS[i].name)
+                cart.push(ITEMS[i].id);
             }
             localStorage.setItem("userCart", JSON.stringify(cart));
     });
@@ -63,27 +69,36 @@ function setup() {
 * TODO: make this function work
 */
 function setupCart() {
-    let parentNode = document.getElementById("cart");
-    
+    alert("setting cart")
+    let parentNode = document.getElementById("your-cart");
+    let cart = JSON.parse(localStorage.getItem("userCart"));
+    for (let index = 0; index < 4; index++) {
+        alert(cart[index])
+        
+    }
+    alert(cart[0].id)
+    alert("c: " + cart.includes(ITEMS[0].id))
     for(let i = 0; i < ITEMS.length; i++) {
-        let newDivNode = document.createElement("div");
-        newDivNode.id = `item-${ITEMS[i].id}`;
         if (cart.includes(ITEMS[i].id)) {
+            alert("adding " + ITEMS[i].name + " to checkout")
+
             const newCardDivNode = document.createElement("div");
             newCardDivNode.className = "card m-2 p-2";
-            newCardDivNode.style.backgroundColor = "white";
 
             const newImgNode = document.createElement("img");
-            newImgNode.src = ITEMS.accessories[i].image;
+            newImgNode.src = ITEMS[i].image;
 
             const newNameNode = document.createElement("h4");
             newNameNode.innerText = `${ITEMS[i].name}`;
+            newNameNode.style.backgroundColor = black;
 
             const newBrandNode = document.createElement("h5");
             newBrandNode.innerText = `${ITEMS[i].brand}`;
+            newBrandNode.style.backgroundColor = black;
 
             const newPriceNode = document.createElement("h5");
             newPriceNode.innerText = `${ITEMS[i].price}`;
+            newPriceNode.style.backgroundColor = black;
 
             newCardDivNode.appendChild(newImgNode);
             newCardDivNode.appendChild(newNameNode);
@@ -93,6 +108,13 @@ function setupCart() {
         }
     }
     localStorage.setItem("userCart", JSON.stringify(cart));
+}
+
+/*
+* This function empties the user's cart
+*/
+function empty() {
+    localStorage.clear()
 }
 
 window.onload = setup;
