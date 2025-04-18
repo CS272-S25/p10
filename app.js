@@ -24,7 +24,6 @@ function setup() {
         start = 8;
         end = 12;
        } else if (window.location.href.match('checkout.html')) {
-        alert("checkout")
         start = 0;
         end = 0;
         setupCart();
@@ -52,10 +51,8 @@ function setup() {
                 buttonNode.innerText = "Add To Cart"
             }
             if (cart.includes(ITEMS[i].id)) {
-                alert("cart already has " + ITEMS[i].name)
                 cart = cart.filter(f => f !== ITEMS[i].id);
             } else {
-                alert("adding " + ITEMS[i].name)
                 cart.push(ITEMS[i].id);
             }
             localStorage.setItem("userCart", JSON.stringify(cart));
@@ -69,36 +66,30 @@ function setup() {
 * TODO: make this function work
 */
 function setupCart() {
-    alert("setting cart")
     let parentNode = document.getElementById("your-cart");
     let cart = JSON.parse(localStorage.getItem("userCart"));
-    for (let index = 0; index < 4; index++) {
-        alert(cart[index])
-        
-    }
-    alert(cart[0].id)
-    alert("c: " + cart.includes(ITEMS[0].id))
     for(let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
-            alert("adding " + ITEMS[i].name + " to checkout")
-
             const newCardDivNode = document.createElement("div");
             newCardDivNode.className = "card m-2 p-2";
 
             const newImgNode = document.createElement("img");
             newImgNode.src = ITEMS[i].image;
+            newImgNode.alt = ITEMS[i].name;
+            newImgNode.style.maxWidth = "10%";
+            newImgNode.style.maxWidth = "10%";
 
             const newNameNode = document.createElement("h4");
             newNameNode.innerText = `${ITEMS[i].name}`;
-            newNameNode.style.backgroundColor = black;
+            newNameNode.style.color = "black";
 
             const newBrandNode = document.createElement("h5");
             newBrandNode.innerText = `${ITEMS[i].brand}`;
-            newBrandNode.style.backgroundColor = black;
+            newBrandNode.style.color = "black";
 
             const newPriceNode = document.createElement("h5");
             newPriceNode.innerText = `${ITEMS[i].price}`;
-            newPriceNode.style.backgroundColor = black;
+            newPriceNode.style.color = "black";
 
             newCardDivNode.appendChild(newImgNode);
             newCardDivNode.appendChild(newNameNode);
