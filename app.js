@@ -68,8 +68,11 @@ function setup() {
 function setupCart() {
     let parentNode = document.getElementById("your-cart");
     let cart = JSON.parse(localStorage.getItem("userCart"));
+    let total = 0;
     for(let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
+            total += parseInt(ITEMS[i].price.replace('$', ''));
+
             const newCardDivNode = document.createElement("div");
             newCardDivNode.className = "card m-2 p-2";
 
@@ -98,6 +101,9 @@ function setupCart() {
             parentNode.appendChild(newCardDivNode);
         }
     }
+    const newTotalNode = document.createElement("h4");
+    newTotalNode.innerText = `Total: $` + total;
+    parentNode.append(newTotalNode);
     localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
