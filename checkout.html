@@ -12,37 +12,45 @@
     <link href="styles.css" rel="stylesheet" />
     <script src="items.js" defer></script>
     <script src="app.js" defer></script>
-    
+
 </head>
 
 <body>
-    <section class="m-3">
-        <h1>Sporting Goods</h1>
-    </section>
+
     <div style="border: 2px white solid;">
         <nav class="navbar">
             <p>
-                <a class="m-2" href="index.html">Home</a>
-                <a class="m-2" href="apparel.html">Apparel</a>
-                <a class="m-2" href="accessories.html">Accessories</a>
-                <a class="m-2" href="shoes.html">Shoes</a>
-                <a href="checkout.html" class="btn btn-light btn-sm">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
+            <h1>Sporting Goods</h1>
+            <a class="m-2" href="index.html">Home</a>
+            <a class="m-2" href="apparel.html">Apparel</a>
+            <a class="m-2" href="accessories.html">Accessories</a>
+            <a class="m-2" href="shoes.html">Shoes</a>
+            <a href="checkout.html" class="btn btn-light btn-sm">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
             </p>
-        </nav>  
+        </nav>
     </div>
+
     <section class="m-3">
         <h2>Your Cart</h2>
+
         <div class="container-fluid">
             <div class="row" id="your-cart">
             </div>
         </div>
+
         <a href="checkout2.html" class="link">
             <button id="checkout-btn" class="btn" onclick="empty()">Checkout</button>
         </a>
-        <button id="clear-btn" class="btn" onclick="empty()">Empty Cart</button>
 
+        <button id="clear-btn" class="btn" onclick="empty()">Empty Cart</button>
+    </section>
 </body>
+
+<footer>
+    <a class="m-2" href="FAQ.html">FAQ</a>
+    <a class="m-2" href="Reviews.html">Reviews</a>
+</footer>
 
 </html>

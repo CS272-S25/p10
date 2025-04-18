@@ -1,17 +1,20 @@
 body {
     font-size: 16px; 
     color:white;
-    background-color: #1f1f1f;
+    background-color: #161616;
     font-family:Arial, Helvetica, sans-serif;
     padding: 20px;
 }
+
 h1 {
     text-shadow: 2px grey;
-    color:rgb(228, 15, 15)
+    color: #C5050c;
 }
+
 .m-2 {
-    color:white
+    color: white;
 }
+
 .container {
     display: grid;
     grid-template-columns: auto auto;
