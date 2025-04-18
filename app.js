@@ -106,6 +106,10 @@ function setupCart() {
 */
 function empty() {
     localStorage.clear()
+    let parentNode = document.getElementById("your-cart");
+    while (parentNode.lastElementChild) {
+        parentNode.removeChild(parentNode.lastElementChild);
+    }
 }
 
 window.onload = setup;
