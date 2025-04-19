@@ -15,7 +15,7 @@ h1 {
     color: white;
 }
 
-/* Grid formatting for displying items */
+/* For products */
 .display-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -24,16 +24,18 @@ h1 {
     padding: 20px;
     border-radius: 15px;
     border: 2px solid white;
-
 }
 
+/* For FAQ and reviews containers */
 .container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center;
     background-color: #6a6a54;
     padding: 20px;
     border-radius: 15px;
     border: 2px solid white;
+    gap: 35px;
   }
   
 .btn {
