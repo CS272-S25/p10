@@ -23,13 +23,17 @@ h1 {
     background-color: #6a6a54;
     padding: 20px;
     border-radius: 15px;
+    border: 2px solid white;
+
 }
 
 .container {
     display: grid;
     grid-template-columns: auto auto;
-    background-color: #48472e;
+    background-color: #6a6a54;
     padding: 20px;
+    border-radius: 15px;
+    border: 2px solid white;
   }
   
 .btn {
