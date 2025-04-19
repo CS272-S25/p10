@@ -36,8 +36,8 @@ h1 {
     border-radius: 15px;
     border: 2px solid white;
     gap: 35px;
-  }
-  
+}
+
 .btn {
     background-color: white;
     color: black;
@@ -155,13 +155,13 @@ a.link:active {
 .cart-item {
     display: flex;
     align-items: left;
-    background-color:#7d7d63; 
+    background-color: #7d7d63;
     border-radius: 10px;
     width: 98%;
 }
 
 .cart-img {
-    padding-right: 15px; 
+    padding-right: 15px;
 }
 
 #cart-total {
@@ -171,6 +171,6 @@ a.link:active {
 .checkout-btns {
     display: flex;
     justify-content: flex-end;
-    gap: 20px; 
-    padding-right: 3rem;
+    padding-top: 1rem;
+    gap: 20px;
 }
