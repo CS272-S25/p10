@@ -92,15 +92,12 @@ function setupCart() {
             // Text content (name, brand, price)
             const newNameNode = document.createElement("h4");
             newNameNode.innerText = `${ITEMS[i].name}`;
-            newNameNode.style.color = "black";
 
             const newBrandNode = document.createElement("h5");
             newBrandNode.innerText = `${ITEMS[i].brand}`;
-            newBrandNode.style.color = "black";
 
             const newPriceNode = document.createElement("h5");
             newPriceNode.innerText = `${ITEMS[i].price}`;
-            newPriceNode.style.color = "black";
 
             // Add text content to card
             const textWrapper = document.createElement("div");
