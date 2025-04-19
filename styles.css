@@ -68,9 +68,10 @@ footer {
     margin-top: auto;
 }
 
-/* shoe images */
-.shoes img {
+/* product images */
+.productImg {
     max-width: 200px;
+    max-height: 200px;
 }
 
 /* Navigation header */
