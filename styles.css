@@ -40,10 +40,13 @@ h1 {
   
 .btn {
     background-color: white;
+    color: black;
+    border-radius: 5px;
 }
 
 .btn:hover {
     color: rgb(129, 129, 254);
+    background-color: white;
 }
 
 a:hover {
@@ -118,4 +121,24 @@ footer {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+a.link:link {
+    color: white;
+    text-decoration: none;
+}
+
+a.link:visited {
+    color: rgb(129, 129, 254);
+    text-decoration: none;
+}
+
+a.link:hover {
+    color: rgb(129, 129, 254);
+    text-decoration: underline;
+}
+
+a.link:active {
+    color: rgb(129, 129, 254);
+    text-decoration: underline;
 }
