@@ -5,83 +5,88 @@ if (!localStorage.getItem("userCart")) {
 }
 
 /*
-* This function sets up the accesories, apparel, shoes, and checkout pages.
-* For accesories, apparel, and shoes; this function adds event listeners to the buttons,
-* allowing them to add items to the cart.
-* For checkout; this function calls the setupCart function.
+* This function sets up the accessories, apparel, shoes, and checkout pages.
+* For accessories, apparel, and shoes, it adds event listeners to buttons,
+* allowing users to add/remove items from the cart.
+* For the checkout page, it calls setupCart() to display the items.
 */
 function setup() {
-    //start and end determine which buttons will be set up later in the function, if any
-    let start;
-    let end;
-    if (window.location.href.match('../shop/accessories.html') != null) {
+    let start = 0;
+    let end = 0;
+
+    const url = window.location.href;
+    if (url.includes("accessories.html")) {
         start = 0;
         end = 4;
-       } else if (window.location.href.match('../shop/apparel.html') != null) {
+    } else if (url.includes("apparel.html")) {
         start = 4;
         end = 8;
-       } else if (window.location.href.match('../shop/shoes.html') != null) {
+    } else if (url.includes("shoes.html")) {
         start = 8;
         end = 12;
-       } else if (window.location.href.match('../checkout/checkout.html')) {
-        start = 0;
-        end = 0;
+    } else if (url.includes("checkout.html")) {
         setupCart();
-       } else {
-        start = 0;
-        end = 0; 
-       }
-    let cart = JSON.parse(localStorage.getItem("userCart"));
-
-    //this loop sets up buttons based on the start and end values set earlier
-    for(let i = start; i < end; i++) {
-        let buttonNode = document.getElementById("add-btn " + ITEMS[i].id);
-        if (cart.includes(ITEMS[i].id)) {
-            buttonNode.style.backgroundColor = "grey";
-            buttonNode.innerText = "Added"
-        } else {
-            buttonNode.style.backgroundColor = "white";
-        }
-        buttonNode.addEventListener("click", () => {
-            if (buttonNode.style.backgroundColor === "white") {
-                buttonNode.style.backgroundColor = "grey";
-                buttonNode.innerText = "Added"
-            } else {
-                buttonNode.style.backgroundColor = "white";
-                buttonNode.innerText = "Add To Cart"
-            }
-            if (cart.includes(ITEMS[i].id)) {
-                cart = cart.filter(f => f !== ITEMS[i].id);
-            } else {
-                cart.push(ITEMS[i].id);
-            }
-            localStorage.setItem("userCart", JSON.stringify(cart));
-    });
+        return;
     }
 
+    let cart = new Set(JSON.parse(localStorage.getItem("userCart")) || []);
+
+    // this loop sets up buttons based on the start and end values set above
+    for (let i = start; i < end; i++) {
+        const item = ITEMS[i];
+        const buttonId = "add-btn " + item.id;
+        const button = document.getElementById(buttonId);
+
+        if (!button) continue;
+
+        updateCartButton(button, item.id, cart);
+
+        button.addEventListener("click", () => {
+            if (cart.has(item.id)) {
+                cart.delete(item.id);
+            } else {
+                cart.add(item.id);
+            }
+
+            updateCartButton(button, item.id, cart);
+            localStorage.setItem("userCart", JSON.stringify(Array.from(cart)));
+        });
+    }
+}
+
+/* 
+* Helper function to update the button style and text.
+*/
+function updateCartButton(button, itemId, cartSet) {
+    const inCart = cartSet.has(itemId);
+    button.className = `btn ${inCart ? "in-cart" : "not-in-cart"}`;
+    button.innerText = inCart ? "Added" : "Add To Cart";
 }
 
 /*
 * This function loads in the items from the cart into the checkout.
-* TODO: make this function work
 */
 function setupCart() {
     let parentNode = document.getElementById("your-cart");
     let cart = JSON.parse(localStorage.getItem("userCart"));
     let total = 0;
-    for(let i = 0; i < ITEMS.length; i++) {
+    for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
             total += parseInt(ITEMS[i].price.replace('$', ''));
 
+            // Create card container with flexbox layout
             const newCardDivNode = document.createElement("div");
-            newCardDivNode.className = "card m-2 p-2";
+            newCardDivNode.className = "cart-item  m-2 p-2 flex-row align-items-center";
 
+            // Image
             const newImgNode = document.createElement("img");
+            newImgNode.className = "cart-img m-3";
             newImgNode.src = ITEMS[i].image;
             newImgNode.alt = ITEMS[i].name;
-            newImgNode.style.maxWidth = "10%";
-            newImgNode.style.maxWidth = "10%";
+            newImgNode.style.maxWidth = "100px";
+            newImgNode.style.height = "auto";
 
+            // Text content (name, brand, price)
             const newNameNode = document.createElement("h4");
             newNameNode.innerText = `${ITEMS[i].name}`;
             newNameNode.style.color = "black";
@@ -94,21 +99,32 @@ function setupCart() {
             newPriceNode.innerText = `${ITEMS[i].price}`;
             newPriceNode.style.color = "black";
 
-            newCardDivNode.appendChild(newImgNode);
-            newCardDivNode.appendChild(newNameNode);
-            newCardDivNode.appendChild(newBrandNode);
-            newCardDivNode.appendChild(newPriceNode);
+            // Add text content to card
+            const textWrapper = document.createElement("div");
+            textWrapper.className = "cart-text";
+
+            textWrapper.appendChild(newNameNode);
+            textWrapper.appendChild(newBrandNode);
+            textWrapper.appendChild(newPriceNode);
+
+            // Append image and text to card
+            newCardDivNode.appendChild(newImgNode); // Image on the left
+            newCardDivNode.appendChild(textWrapper); // Text on the right
+
+            // Add card to the parent
             parentNode.appendChild(newCardDivNode);
         }
     }
+
     const newTotalNode = document.createElement("h4");
+    newTotalNode.id = "cart-total";
     newTotalNode.innerText = `Total: $` + total;
     parentNode.append(newTotalNode);
     localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
 /*
-* This function empties the user's cart
+* This function empties the user's cart.
 */
 function empty() {
     localStorage.clear()
