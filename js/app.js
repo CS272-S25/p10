@@ -14,16 +14,16 @@ function setup() {
     //start and end determine which buttons will be set up later in the function, if any
     let start;
     let end;
-    if (window.location.href.match('accessories.html') != null) {
+    if (window.location.href.match('../shop/accessories.html') != null) {
         start = 0;
         end = 4;
-       } else if (window.location.href.match('apparel.html') != null) {
+       } else if (window.location.href.match('../shop/apparel.html') != null) {
         start = 4;
         end = 8;
-       } else if (window.location.href.match('shoes.html') != null) {
+       } else if (window.location.href.match('../shop/shoes.html') != null) {
         start = 8;
         end = 12;
-       } else if (window.location.href.match('checkout.html')) {
+       } else if (window.location.href.match('../checkout/checkout.html')) {
         start = 0;
         end = 0;
         setupCart();
