@@ -64,8 +64,11 @@ function updateCartButton(button, itemId, cartSet) {
 }
 
 /*
-* This function loads in the items from the cart into the checkout.
-*/
+ * This function retrieves the user's cart from localStorage and displays each item
+ * on the checkout page. It creates a container for each item using a flex-row layout,
+ * placing the product image on the left and the name, brand, and price on the right.
+ * It also calculates and displays the total cost of the items at the bottom.
+ */
 function setupCart() {
     let parentNode = document.getElementById("your-cart");
     let cart = JSON.parse(localStorage.getItem("userCart"));
