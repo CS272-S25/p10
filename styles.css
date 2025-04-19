@@ -1,38 +1,39 @@
 body {
     font-size: 16px;
     color: white;
-    background-color: #161616;
+    background-color: #43432b;
     font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
 }
 
 h1 {
     text-shadow: 2px grey;
-    color: #C5050c;
+    color: white;
 }
 
 .m-2 {
     color: white;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #1f1f1f;
-    padding: 20px;
-  }
-  
 /* Grid formatting for displying items */
 .display-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     justify-items: center;
-    background-color: #1f1f1f;
+    background-color: #6a6a54;
     padding: 20px;
+    border-radius: 15px;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #48472e;
+    padding: 20px;
+  }
+  
 .btn {
-    background-color: white
+    background-color: white;
 }
 
 a.link:link {
@@ -61,7 +62,7 @@ footer {
     margin-top: auto;
 }
 
-/* Images */
+/* shoe images */
 .shoes img {
     max-width: 200px;
 }
@@ -72,7 +73,13 @@ footer {
     margin: 0 auto;
     border: 2px solid white;
     border-radius: 15px;
-    background-color: #1a1a1a;
+    background-color: #6a6a54;
+}
+
+/* Site title link */
+.site-title-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Drop down menu */
@@ -97,7 +104,7 @@ footer {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #333;
+    background-color: #2d2d1d;
     min-width: 160px;
     z-index: 1;
     border-radius: 4px;
@@ -116,10 +123,4 @@ footer {
 
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-/* Site title link */
-.site-title-link {
-    text-decoration: none;
-    color: inherit;
 }
