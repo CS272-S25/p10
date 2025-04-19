@@ -6,6 +6,12 @@ body {
     padding: 20px;
 }
 
+footer {
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
 h1 {
     text-shadow: 2px grey;
     color: white;
@@ -15,7 +21,7 @@ h1 {
     color: white;
 }
 
-/* For products */
+/* For products and checkout */
 .display-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -38,6 +44,7 @@ h1 {
     gap: 35px;
 }
 
+/* BUTTON STYLING */
 .btn {
     background-color: white;
     color: black;
@@ -58,17 +65,7 @@ h1 {
     background-color: white;
 }
 
-a:hover {
-    color: rgb(129, 129, 254);
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
-}
-
-/* product images */
+/* Product images */
 .productImg {
     max-width: 200px;
     max-height: 200px;
@@ -89,7 +86,7 @@ footer {
     color: inherit;
 }
 
-/* Drop down menu */
+/* DROP DOWN MENU */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -132,6 +129,11 @@ footer {
     display: block;
 }
 
+/* LINK STYLING */
+a:hover {
+    color: rgb(129, 129, 254);
+}
+
 a.link:link {
     color: white;
     text-decoration: none;
@@ -152,6 +154,7 @@ a.link:active {
     text-decoration: underline;
 }
 
+/* CART STYLING */
 .cart-item {
     display: flex;
     align-items: left;
@@ -162,6 +165,10 @@ a.link:active {
 
 .cart-img {
     padding-right: 15px;
+}
+
+.cart-text {
+    color: white;
 }
 
 #cart-total {
