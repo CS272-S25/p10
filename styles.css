@@ -41,7 +41,16 @@ h1 {
 .btn {
     background-color: white;
     color: black;
-    border-radius: 5px;
+}
+
+.btn.in-cart {
+    background-color: grey;
+    color: black;
+}
+
+.btn.in-cart:hover {
+    background-color: rgb(187, 187, 187);
+    color: black;
 }
 
 .btn:hover {
@@ -141,4 +150,27 @@ a.link:hover {
 a.link:active {
     color: rgb(129, 129, 254);
     text-decoration: underline;
+}
+
+.cart-item {
+    display: flex;
+    align-items: left;
+    background-color:#7d7d63; 
+    border-radius: 10px;
+    width: 98%;
+}
+
+.cart-img {
+    padding-right: 15px; 
+}
+
+#cart-total {
+    text-align: right;
+}
+
+.checkout-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px; 
+    padding-right: 3rem;
 }
