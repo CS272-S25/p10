@@ -70,7 +70,8 @@ function updateCartButton(button, itemId, cartSet) {
  * It also calculates and displays the total cost of the items at the bottom.
  */
 function setupCart() {
-    let parentNode = document.getElementById("your-cart");
+    parentNode = document.getElementById("your-cart");
+    parentNode.innerHTML = "";
     let cart = JSON.parse(localStorage.getItem("userCart"));
     let total = 0;
     for (let i = 0; i < ITEMS.length; i++) {
@@ -79,7 +80,7 @@ function setupCart() {
 
             // Create card container with flexbox layout
             const newCardDivNode = document.createElement("div");
-            newCardDivNode.className = "cart-item  m-2 p-2 flex-row align-items-center";
+            newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
 
             // Image
             const newImgNode = document.createElement("img");
@@ -107,9 +108,28 @@ function setupCart() {
             textWrapper.appendChild(newBrandNode);
             textWrapper.appendChild(newPriceNode);
 
-            // Append image and text to card
-            newCardDivNode.appendChild(newImgNode); // Image on the left
-            newCardDivNode.appendChild(textWrapper); // Text on the right
+            // Button
+            const newButtonNode = document.createElement("button");
+            newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
+
+            newButtonNode.addEventListener("click", function () {
+                // Remove item from cart 
+                const updatedCart = cart.filter(id => id !== ITEMS[i].id);
+                // Update localStorage
+                localStorage.setItem("userCart", JSON.stringify(updatedCart));
+                // Refresh cart 
+                setupCart();
+            });
+
+            // Add btn to card
+            const btnWrapper = document.createElement("div");
+            btnWrapper.className = 'ms-auto'
+            btnWrapper.appendChild(newButtonNode);
+
+            // Append image, text, and btn to card cont.
+            newCardDivNode.appendChild(newImgNode);
+            newCardDivNode.appendChild(textWrapper);
+            newCardDivNode.appendChild(btnWrapper);
 
             // Add card to the parent
             parentNode.appendChild(newCardDivNode);

@@ -165,7 +165,8 @@ a.link:active {
     align-items: left;
     background-color: #7d7d63;
     border-radius: 10px;
-    width: 98%;
+    width: 98.75%;
+    height: auto;
 }
 
 .cart-img {
@@ -178,11 +179,24 @@ a.link:active {
 
 #cart-total {
     text-align: right;
+    padding-top: 0.5rem;
+
 }
 
 .checkout-btns {
     display: flex;
     justify-content: flex-end;
     padding-top: 1rem;
+    padding-right: 1rem;
     gap: 20px;
+}
+
+.remove-btn {
+    background-color: lightcoral;
+    margin-left: -3.5em;
+}
+
+.remove-btn:hover {
+    background-color: crimson;
+    color:black
 }
