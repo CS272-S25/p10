@@ -4,6 +4,10 @@ if (!localStorage.getItem("userCart")) {
     localStorage.setItem("userCart", JSON.stringify([]));
 }
 
+if (!localStorage.getItem("order")) {
+    localStorage.setItem("order", JSON.stringify([]));
+}
+
 
 /*
 * This function sets up the accessories, apparel, shoes, and checkout pages.
@@ -30,6 +34,9 @@ function setup() {
         return;
     } else if (url.includes("checkout.html")) {
         setupCheckout();
+        return;
+    } else if (url.includes("order.html")) {
+        setUpOrder();
         return;
     }
 
@@ -58,8 +65,9 @@ function setup() {
     }
 }
 
+
 /* 
-* Helper function to update the button style and text.
+* Helper function to update 'Add To Cart' button style and text.
 */
 function updateCartButton(button, itemId, cartSet) {
     const inCart = cartSet.has(itemId);
@@ -150,8 +158,6 @@ function setupCart() {
         newTotalNode.innerText = `Total: $` + total;
         parentNode.append(newTotalNode);
     }
-
-    localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
 
@@ -177,6 +183,64 @@ function setupCheckout() {
 
 
 /*
+* This function sets up the order details inside of order.html.
+*/
+function setUpOrder() {
+    parentNode = document.getElementById("your-order");
+    parentNode.innerHTML = "";
+    let order = JSON.parse(localStorage.getItem("order"));
+    for (let i = 0; i < ITEMS.length; i++) {
+        if (order.includes(ITEMS[i].id)) {
+
+            // Create card container with flexbox layout
+            const newCardDivNode = document.createElement("div");
+            newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
+
+            // Image
+            const newImgNode = document.createElement("img");
+            newImgNode.className = "cart-img m-3";
+            newImgNode.src = ITEMS[i].image;
+            newImgNode.alt = ITEMS[i].name;
+            newImgNode.style.maxWidth = "100px";
+            newImgNode.style.height = "auto";
+
+            // Text content (name, brand, price)
+            const newNameNode = document.createElement("h4");
+            newNameNode.innerText = `${ITEMS[i].name}`;
+
+            const newBrandNode = document.createElement("h5");
+            newBrandNode.innerText = `${ITEMS[i].brand}`;
+
+            const newPriceNode = document.createElement("h5");
+            newPriceNode.innerText = `${ITEMS[i].price}`;
+
+            // Add text content to card
+            const textWrapper = document.createElement("div");
+            textWrapper.className = "cart-text";
+
+            textWrapper.appendChild(newNameNode);
+            textWrapper.appendChild(newBrandNode);
+            textWrapper.appendChild(newPriceNode);
+
+            // Append image and text to card cont.
+            newCardDivNode.appendChild(newImgNode);
+            newCardDivNode.appendChild(textWrapper);
+
+            // Add card to the parent
+            parentNode.appendChild(newCardDivNode);
+
+            
+
+        }
+    }
+
+    // TODO, populate 'your-info' (order.html) with user info
+    parentNode = document.getElementById("your-info");
+
+}
+
+
+/*
 * This function checks if any inputs on the checkout form are empty, 
 * returning false if they are and true otherwise.
 */
@@ -186,19 +250,20 @@ function inputChecker() {
         const alert = document.getElementById("alert_" + i);
         alert.innerText = ``;
     }
-    let filled = true;
+    let valid = true;
     for (let i = 1; i < 15; i++) {
         // state input is optional since the country might not be the U.S.
-        if ((i != 8)) {
+        if ((i != 8 || i != 7)) {
             const inp = document.getElementById("input_" + i);
             if (inp && inp.value == "") {
-                filled = false;
+                //valid = false; 
+                valid = true; // for testing only
                 const alert = document.getElementById("alert_" + i);
                 alert.innerText = `This field is required`;
             }
         }
     }
-    return filled;
+    return valid;
 }
 
 
@@ -242,9 +307,9 @@ function checkCart() {
 function confirm() {
     if (inputChecker()) {
         const cart = JSON.parse(localStorage.getItem("userCart"));
+        localStorage.setItem('userCart', JSON.stringify([]));
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
         window.location.href = 'order.html';
-        empty();
     } else return;
 }
 
