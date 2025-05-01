@@ -76,6 +76,15 @@ h1 {
     margin-right: auto;
 }
 
+/* Brand images */
+.brandImg {
+    max-width: 67px;
+    max-height: 67px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Navigation header */
 .nav-box {
     width: 95%;
