@@ -27,6 +27,9 @@ function setup() {
     } else if (url.includes("checkout.html")) {
         setupCart();
         return;
+    } else if (url.includes("checkout2.html")) {
+        setupCheckout();
+        return;
     }
 
     let cart = new Set(JSON.parse(localStorage.getItem("userCart")) || []);
@@ -138,6 +141,23 @@ function setupCart() {
 
     const newTotalNode = document.createElement("h4");
     newTotalNode.id = "cart-total";
+    newTotalNode.innerText = `Total: $` + total;
+    parentNode.append(newTotalNode);
+    localStorage.setItem("userCart", JSON.stringify(cart));
+}
+
+function setupCheckout() {
+    parentNode = document.getElementById("your-total");
+    parentNode.innerHTML = "";
+    let cart = JSON.parse(localStorage.getItem("userCart"));
+    let total = 0;
+    for (let i = 0; i < ITEMS.length; i++) {
+        if (cart.includes(ITEMS[i].id)) {
+            total += parseInt(ITEMS[i].price.replace('$', ''));
+        }
+    }
+    const newTotalNode = document.createElement("h4");
+    newTotalNode.id = "cart-total2";
     newTotalNode.innerText = `Total: $` + total;
     parentNode.append(newTotalNode);
     localStorage.setItem("userCart", JSON.stringify(cart));
