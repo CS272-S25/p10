@@ -248,11 +248,11 @@ function inputChecker() {
     let valid = true;
     for (let i = 1; i < 15; i++) {
         // state input is optional since the country might not be the U.S.
-        if ((i != 8 || i != 7)) {
+        if ((i != 8 && i != 6)) {
             const inp = document.getElementById("input_" + i);
             if (inp && inp.value == "") {
-                //valid = false; 
-                valid = true; // for testing only
+                valid = false; 
+                //valid = true; // for testing only
                 const alert = document.getElementById("alert_" + i);
                 alert.innerText = `This field is required`;
             }
