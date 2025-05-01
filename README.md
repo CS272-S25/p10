@@ -7,8 +7,8 @@ TODO:
 1. ~~Make sure localStorage (cart) is not cleared until detail confirmation.~~
 2. ~~Don't allow checkout without items in cart.~~
 3. ~~Don't allow checkout confirmation without missing fields.~~
-4. Finish formatting input form.
-5. ~~Make inputting apartment/suite number optional~~
+4. ~~Make inputting apartment/suite number optional~~
+5. Finish formatting input form.
 
 
 Other work:
@@ -18,6 +18,7 @@ Other work:
 3. Make inputting state required if the country is the U.S., and optional otherwise
 4. Make sure inputs follow the given format (card number takes 16 numbers, etc.)
     - The checkout form should be using form-control (bootstrap classes).
+5. Fix responsiveness on mobile.
 
 
 Note to instructor: I had the wrong email set in my Git config so my old 
