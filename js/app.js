@@ -83,7 +83,7 @@ function updateCartButton(button, itemId, cartSet) {
  * It also calculates and displays the total cost of the items at the bottom.
  */
 function setupCart() {
-    parentNode = document.getElementById("your-cart");
+    let parentNode = document.getElementById("your-cart");
     parentNode.innerHTML = "";
     let cart = JSON.parse(localStorage.getItem("userCart"));
     let total = 0;
@@ -283,6 +283,8 @@ function empty() {
 */
 function checkCart() {
     const cart = JSON.parse(localStorage.getItem("userCart"));
+    const parentNode = document.getElementById("your-cart");
+
     if (cart.length === 0) {
         parentNode.innerHTML = "";
         const newNode = document.createElement("h2");
