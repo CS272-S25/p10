@@ -23,6 +23,10 @@ h1 {
     color: white;
 }
 
+.alert {
+    color: red;
+}
+
 /* For products and checkout */
 .display-container {
     display: grid;

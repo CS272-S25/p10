@@ -166,6 +166,7 @@ function setupCheckout() {
     const button = document.getElementById("confirm_btn");
     button.addEventListener("click", () => {
         // Checks if any inputs are empty
+        alert("ran")
         if (inputChecker() && total > 0) {
             empty()
             window.location.href = "http://127.0.0.1:3000/p10/checkout/checkout3.html";
@@ -182,14 +183,14 @@ function setupCheckout() {
 function inputChecker() {
     let noBlanks = true;
     for (let i = 1; i <= 14; i++) {
-        const inp = document.getElementById("input_" + i);
-        if (inp.value == "") {
-            noBlanks = true;
-            const newAlertNode = document.createElement("p");
-            newAlertNode.id = "alert_" + i;
-            newAlertNode.innerText = `*This field is required`;
-            newAlertNode.style.color = red;
-            inp.append(newAlertNode)
+        // this allows the state field to be blank if the country isn't the U.S.
+        if (!((i == 8) && document.getElementById("input_10").value != "United States")) {
+            const inp = document.getElementById("input_" + i);
+            if (inp.value == "") {
+                noBlanks = false;
+                const alert = document.getElementById("alert_" + i);
+                alert.innerText = `This field is required`;
+            }
         }
     }
 
@@ -197,10 +198,8 @@ function inputChecker() {
     if (noBlanks) {
         // removes any alert messages that may have been created
         for (let i = 1; i <= 14; i++) {
-            if (document.getElementById("alert_" + i)) {
-                const alert = document.getElementById("alert_" + i);
-                alert.remove();
-            }
+            const alert = document.getElementById("alert_" + i);
+            alert.innerText = ``;
         }
     }
     return noBlanks;
