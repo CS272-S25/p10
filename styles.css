@@ -25,6 +25,8 @@ h1 {
 
 .alert {
     color: red;
+    padding: 0px;
+    margin:0%;
 }
 
 /* For products and checkout */
