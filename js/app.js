@@ -161,14 +161,12 @@ function setupCheckout() {
     newTotalNode.id = "cart-total2";
     newTotalNode.innerText = `Total: $` + total;
     parentNode.append(newTotalNode); 
-
     // Sets up the confirm button so you can only checkout if you have items in the cart and filled out all fields
-    const button = document.getElementById("confirm_btn");
+    const button = document.getElementById("confirm-btn");
     button.addEventListener("click", () => {
         // Checks if any inputs are empty
         if (inputChecker() && total > 0) {
             confirm()
-            window.location.href = "http://127.0.0.1:3000/p10/checkout/checkout3.html";
         }
     });
     
@@ -182,8 +180,8 @@ function setupCheckout() {
 function inputChecker() {
     let noBlanks = true;
     for (let i = 1; i <= 14; i++) {
-        // this allows the state field to be blank if the country isn't the U.S.
-        if (!((i == 8) && document.getElementById("input_10").value != "United States")) {
+        // state input is optional since the country might not be the U.S.
+        if ((i != 8)) {
             const inp = document.getElementById("input_" + i);
             if (inp.value == "") {
                 noBlanks = false;
