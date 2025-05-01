@@ -246,6 +246,7 @@ function setUpOrder() {
             const first = info[1].value;
             const last = info[2].value;
             newNameNode.innerText = first + " " + last;
+            newCardDivNode.appendChild(newNameNode);
             i++;
         } else if (i == 7) {
             // makes sure city and state are on one line
@@ -253,14 +254,17 @@ function setUpOrder() {
             const city = info[7].value;
             const state = info[8].value;
             newNameNode.innerText = city + " " + state;
+            newCardDivNode.appendChild(newNameNode);
             i++;
         } else {
             const newNameNode = document.createElement("h5");
             const inp = info[i].value;
             newNameNode.innerText = inp;
+            newCardDivNode.appendChild(newNameNode);
         }
-        newCardDivNode.appendChild(newNameNode);
+        
     }
+    parentNode.appendChild(newCardDivNode);
 }
 
 
