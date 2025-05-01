@@ -45,7 +45,7 @@
 
             <h4>Email</h4>
             <p class="alert" id="alert_1"></p>
-            <input type="email" id="input_1" name="email" placeholder="Email Address" />
+            <input type="email" id="input_1" name="email" placeholder="Email Address" class="mb-3" />
 
             <h4>Shipping</h4>
             <p class="alert" id="alert_2"></p>
@@ -121,7 +121,7 @@
             <input type="number" id="input_9" name="zip" placeholder="ZIP Code" />
             <!-- Country list taken from https://gist.github.com/danrovito/977bcb97c9c2dfd3398a -->
             <p class="alert" id="alert_10"></p>
-            <select id="input_10" name="country">
+            <select id="input_10" name="country" class="mb-3">
                 <option value=" country link page">Country</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -373,24 +373,25 @@
 
             <h4>Payment Info</h4>
             <p>Accepted Cards</p>
-            <div class="icon-container">
-                <i class="fa-brands fa-cc-visa" style="color:navy;"></i>
-                <i class="fa-brands fa-cc-amex" style="color:blue;"></i>
-                <i class="fa-brands fa-cc-mastercard" style="color:red;"></i>
-                <i class="fa-brands fa-cc-discover" style="color:orange;"></i>
+            <div class="icon-container mb-3">
+                <i class="fa-brands fa-cc-visa fa-2x" style="color:navy;"></i>
+                <i class="fa-brands fa-cc-amex fa-2x" style="color:blue;"></i>
+                <i class="fa-brands fa-cc-mastercard fa-2x" style="color:red;"></i>
+                <i class="fa-brands fa-cc-discover fa-2x" style="color:orange;"></i>
             </div>
-            <p>Name on Card</p>
+            
             <p class="alert" id="alert_11"></p>
             <input type="text" id="input_11" name="cardName" placeholder="Name">
-            <p>Card Number</p>
+            <p>Name on Card</p>
             <p class="alert" id="alert_12"></p>
             <input type="text" id="input_12" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
-            <p>Exp Month/Year</p>
+            <p>Card Number</p>
             <p class="alert" id="alert_13"></p>
             <input type="month" id="input_13" name="expDate" placeholder="Exp. Month">
-            <p>CVV</p>
+            <p>Exp Month/Year</p>
             <p class="alert" id="alert_14"></p>
             <input type="number" id="cvv" name="cvv" placeholder="xxx">
+            <p>CVV</p>
         </div>
 
         <div class="row" id="your-total">
