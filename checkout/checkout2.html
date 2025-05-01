@@ -43,17 +43,17 @@
             <div class="w-100 bg-light mb-4" style="height: 3px;"></div>
 
             <h4>Email</h4>
-            <input type="email" id="email" name="email" placeholder="Email Address" />
+            <input type="email" id="input_1" name="email" placeholder="Email Address" />
 
             <h4 class="mt-2">Shipping</h4>
-            <input type="text" id="firstName" name="firstName" placeholder="First Name" />
-            <input type="text" id="lastName" name="lastName" placeholder="Last Name" />
-            <input type="tel" id="phone" name="phone" placeholder="Phone Number (xxx-xxx-xxxx)" />
-            <input type="text" id="address" name="address" placeholder="Address" />
-            <input type="number" id="apartment" name="apartment" placeholder="Apt, Suite (optional)" />
-            <input type="text" id="city" name="city" placeholder="City" />
+            <input type="text" id="input_2" name="firstName" placeholder="First Name" />
+            <input type="text" id="input_3" name="lastName" placeholder="Last Name" />
+            <input type="tel" id="input_4" name="phone" placeholder="Phone Number (xxx-xxx-xxxx)" />
+            <input type="text" id="input_5" name="address" placeholder="Address" />
+            <input type="number" id="input_6" name="apartment" placeholder="Apt, Suite (optional)" />
+            <input type="text" id="input_7" name="city" placeholder="City" />
             <!-- State list taken from https://www.freeformatter.com/usa-state-list-html-select.html-->
-            <select id="state" name="state">
+            <select id="input_8" name="state">
                 <option value=" state link page">State*</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -108,9 +108,9 @@
                 <option value="WY">Wyoming</option>
                 <option value="NA">N/A</option>
             </select>
-            <input type="number" id="zip" name="zip" placeholder="ZIP Code" />
+            <input type="number" id="input_9" name="zip" placeholder="ZIP Code" />
             <!-- Country list taken from https://gist.github.com/danrovito/977bcb97c9c2dfd3398a -->
-            <select id="country" name="country">
+            <select id="input_10" name="country">
                 <option value=" country link page">Country</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -369,18 +369,18 @@
                 <i class="fa-brands fa-cc-discover" style="color:orange;"></i>
             </div>
             <p>Name on Card</p>
-            <input type="text" id="cardName" name="cardName" placeholder="Name">
+            <input type="text" id="input_11" name="cardName" placeholder="Name">
             <p>Card Number</p>
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+            <input type="text" id="input_12" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
             <p>Exp Month/Year</p>
-            <input type="month" id="expDate" name="expDate" placeholder="Exp. Month">
+            <input type="month" id="input_13" name="expDate" placeholder="Exp. Month">
             <p>CVV</p>
-            <input type="number" id="cvv" name="cvv" placeholder="xxx">
+            <input type="number" id="input_14" name="cvv" placeholder="xxx">
             <div class="row" id="your-total">
                 
             </div>
             <div class="d-flex justify-content-center mt-5 mb-4">
-                <a href="checkout3.html" class="btn" onclick="empty();">Confirm</a>
+                <button class="btn" id="confirm_btn">Confirm</button>
             </div>
         </div>
     </section>

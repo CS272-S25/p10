@@ -147,6 +147,7 @@ function setupCart() {
 }
 
 function setupCheckout() {
+    // Create total text
     parentNode = document.getElementById("your-total");
     parentNode.innerHTML = "";
     let cart = JSON.parse(localStorage.getItem("userCart"));
@@ -159,10 +160,51 @@ function setupCheckout() {
     const newTotalNode = document.createElement("h4");
     newTotalNode.id = "cart-total2";
     newTotalNode.innerText = `Total: $` + total;
-    parentNode.append(newTotalNode);
+    parentNode.append(newTotalNode); 
+
+    // Sets up the confirm button so you can only checkout if you have items in the cart and filled out all fields
+    const button = document.getElementById("confirm_btn");
+    button.addEventListener("click", () => {
+        // Checks if any inputs are empty
+        if (inputChecker() && total > 0) {
+            empty()
+            window.location.href = "http://127.0.0.1:3000/p10/checkout/checkout3.html";
+        }
+    });
+    
     localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
+/*
+* This function checks if any inputs on the checkout form are empty, 
+* returning false if they are and true otherwise.
+*/
+function inputChecker() {
+    let noBlanks = true;
+    for (let i = 1; i <= 14; i++) {
+        const inp = document.getElementById("input_" + i);
+        if (inp.value == "") {
+            noBlanks = true;
+            const newAlertNode = document.createElement("p");
+            newAlertNode.id = "alert_" + i;
+            newAlertNode.innerText = `*This field is required`;
+            newAlertNode.style.color = red;
+            inp.append(newAlertNode)
+        }
+    }
+
+    
+    if (noBlanks) {
+        // removes any alert messages that may have been created
+        for (let i = 1; i <= 14; i++) {
+            if (document.getElementById("alert_" + i)) {
+                const alert = document.getElementById("alert_" + i);
+                alert.remove();
+            }
+        }
+    }
+    return noBlanks;
+}
 /*
 * This function empties the user's cart.
 */
