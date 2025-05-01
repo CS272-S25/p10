@@ -178,8 +178,13 @@ function setupCheckout() {
 * returning false if they are and true otherwise.
 */
 function inputChecker() {
+    // removes any alert messages that may have been created on a previous click
+    for (let i = 1; i < 15; i++) {
+        const alert = document.getElementById("alert_" + i);
+        alert.innerText = ``;
+    }
     let noBlanks = true;
-    for (let i = 1; i <= 14; i++) {
+    for (let i = 1; i < 15; i++) {
         // state input is optional since the country might not be the U.S.
         if ((i != 8)) {
             const inp = document.getElementById("input_" + i);
@@ -188,15 +193,6 @@ function inputChecker() {
                 const alert = document.getElementById("alert_" + i);
                 alert.innerText = `This field is required`;
             }
-        }
-    }
-
-    
-    if (noBlanks) {
-        // removes any alert messages that may have been created
-        for (let i = 1; i <= 14; i++) {
-            const alert = document.getElementById("alert_" + i);
-            alert.innerText = ``;
         }
     }
     return noBlanks;
