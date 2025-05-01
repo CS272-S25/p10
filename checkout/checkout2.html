@@ -10,7 +10,8 @@
     <link href="../styles.css" rel="stylesheet" />
     <script src="../js/items.js" defer></script>
     <script src="../js/app.js" defer></script>
-    <title>CS472 Group Project</title>
+
+    <title>Checkout - SportingGoods</title>
 </head>
 
 <body>
@@ -389,14 +390,13 @@
             <input type="month" id="input_13" name="expDate" placeholder="Exp. Month">
             <p>CVV</p>
             <p class="alert" id = "alert_14"></p>
-            <input type="number" id="input_14" name="cvv" placeholder="xxx">
-            <div class="row" id="your-total">
-                
-            </div>
-            <div class="d-flex justify-content-center mt-5 mb-4">
-                <button class="btn" id="confirm_btn">Confirm</button>
-            </div>
+            <input type="number" id="cvv" name="cvv" placeholder="xxx">
         </div>
+
+        <div class="d-flex justify-content-center mt-5 mb-4">
+            <button id="checkout-btn" class="btn btn-primary" onclick="confirm()">Confirm</button>
+        </div>
+
     </section>
     
 

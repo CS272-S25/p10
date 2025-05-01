@@ -166,7 +166,6 @@ function setupCheckout() {
     const button = document.getElementById("confirm_btn");
     button.addEventListener("click", () => {
         // Checks if any inputs are empty
-        alert("ran")
         if (inputChecker() && total > 0) {
             empty()
             window.location.href = "http://127.0.0.1:3000/p10/checkout/checkout3.html";
@@ -208,11 +207,38 @@ function inputChecker() {
 * This function empties the user's cart.
 */
 function empty() {
-    localStorage.clear()
-    let parentNode = document.getElementById("your-cart");
+    // Set userCart to an empty array (but keep key)
+    localStorage.setItem('userCart', JSON.stringify([]));
+
+    // Clear visual cart items from DOM
+    const parentNode = document.getElementById("your-cart");
     while (parentNode.lastElementChild) {
         parentNode.removeChild(parentNode.lastElementChild);
     }
 }
 
+/*
+* This function checks if the user's cart is empty.
+*/
+function checkCart() {
+    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+    if (cart.length === 0) {
+        alert("Please add items to your cart first.");
+    } else {
+        window.location.href = 'checkout2.html';
+    }
+}
+
+/*
+* This function saves and confirms the user's order.
+*/
+function confirm() {
+    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+    localStorage.setItem("order", JSON.stringify(Array.from(cart)));
+    window.location.href = 'checkout3.html';
+    empty();
+}
+
+
 window.onload = setup;
+
