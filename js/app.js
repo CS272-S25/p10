@@ -265,20 +265,17 @@ function inputChecker() {
 /*
 * This function empties the user's cart.
 */
-function empty() {
-    // Set userCart to an empty array (but keep key)
-    localStorage.setItem('userCart', JSON.stringify([]));
-
+function empty() {    
     // Clear visual cart items from DOM
     const parentNode = document.getElementById("your-cart");
-    while (parentNode.lastElementChild) {
-        parentNode.removeChild(parentNode.lastElementChild);
-    }
-
+    parentNode.innerHTML = ''
+    
     const newNode = document.createElement("h2");
     newNode.innerText = "Cart is empty."
     parentNode.appendChild(newNode);
 
+    // Set userCart to an empty array (but keep key)
+    localStorage.setItem('userCart', JSON.stringify([]));
 }
 
 /*
