@@ -234,17 +234,32 @@ function setUpOrder() {
             parentNode.appendChild(newCardDivNode);
         }
     }
-    // TODO, populate 'your-info' (order.html) with user info
     const newCardDivNode = document.createElement("div");
     newCardDivNode.className = "input-value m-2 p-2 d-flex align-items-center";
-    const newNameNode = document.createElement("h4");
-    const first = document.getElementById("input_2");
-    const last = document.getElementById("input_3");
-    newNameNode.innerText = first.value + last.value;
+    
     parentNode = document.getElementById("your-info");
+    const info = JSON.parse(localStorage.getItem("userInfo"));
     for (let i = 1; i < 15; i++) {
-        
-        
+        if (i < 3) {
+            // makes sure first and last name are on one line
+            const newNameNode = document.createElement("h4");
+            const first = info[1].value;
+            const last = info[2].value;
+            newNameNode.innerText = first + " " + last;
+            i++;
+        } else if (i == 7) {
+            // makes sure city and state are on one line
+            const newNameNode = document.createElement("h5");
+            const city = info[7].value;
+            const state = info[8].value;
+            newNameNode.innerText = city + " " + state;
+            i++;
+        } else {
+            const newNameNode = document.createElement("h5");
+            const inp = info[i].value;
+            newNameNode.innerText = inp;
+        }
+        newCardDivNode.appendChild(newNameNode);
     }
 }
 
