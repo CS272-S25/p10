@@ -1,7 +1,7 @@
 # CS472 Group Project 
 Group 10: Ulises, Sam, & Jack
 
-**NOTE TO GROUP: app.js line 259 is commented out for testing checkout form.**
+**NOTE TO GROUP: app.js line 254 is commented out for testing checkout form.**
 
 TODO:
 1. ~~Make sure localStorage (cart) is not cleared until detail confirmation.~~

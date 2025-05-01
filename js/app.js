@@ -228,15 +228,10 @@ function setUpOrder() {
 
             // Add card to the parent
             parentNode.appendChild(newCardDivNode);
-
-            
-
         }
     }
-
     // TODO, populate 'your-info' (order.html) with user info
     parentNode = document.getElementById("your-info");
-
 }
 
 
