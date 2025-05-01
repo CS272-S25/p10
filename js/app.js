@@ -268,7 +268,7 @@ function inputChecker() {
 function empty() {    
     // Clear visual cart items from DOM
     const parentNode = document.getElementById("your-cart");
-    parentNode.innerHTML = ''
+    parentNode.innerHTML = '';
     
     const newNode = document.createElement("h2");
     newNode.innerText = "Cart is empty."
