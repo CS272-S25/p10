@@ -154,35 +154,6 @@ function setupCart() {
     localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
-function setupCheckout() {
-    // Create total text
-    parentNode = document.getElementById("your-total");
-    parentNode.innerHTML = "";
-    let cart = JSON.parse(localStorage.getItem("userCart"));
-    let total = 0;
-    for (let i = 0; i < ITEMS.length; i++) {
-        if (cart.includes(ITEMS[i].id)) {
-            total += parseInt(ITEMS[i].price.replace('$', ''));
-        }
-    }
-    const newTotalNode = document.createElement("h4");
-    newTotalNode.id = "cart-total2";
-    newTotalNode.innerText = `Total: $` + total;
-    parentNode.append(newTotalNode); 
-
-    // Sets up the confirm button so you can only checkout if you have items in the cart and filled out all fields
-    const button = document.getElementById("confirm_btn");
-    button.addEventListener("click", () => {
-        // Checks if any inputs are empty
-        if (inputChecker() && total > 0) {
-            empty()
-            window.location.href = "http://127.0.0.1:3000/p10/checkout/checkout3.html";
-        }
-    });
-    
-    localStorage.setItem("userCart", JSON.stringify(cart));
-}
-
 /*
 * This function checks if any inputs on the checkout form are empty, 
 * returning false if they are and true otherwise.
