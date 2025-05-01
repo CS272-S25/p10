@@ -4,6 +4,7 @@ if (!localStorage.getItem("userCart")) {
     localStorage.setItem("userCart", JSON.stringify([]));
 }
 
+
 /*
 * This function sets up the accessories, apparel, shoes, and checkout pages.
 * For accessories, apparel, and shoes, it adds event listeners to buttons,
@@ -32,7 +33,7 @@ function setup() {
         return;
     }
 
-    let cart = new Set(JSON.parse(localStorage.getItem("userCart")) || []);
+    let cart = new Set(JSON.parse(localStorage.getItem("userCart")));
 
     // this loop sets up buttons based on the start and end values set above
     for (let i = start; i < end; i++) {
@@ -65,6 +66,7 @@ function updateCartButton(button, itemId, cartSet) {
     button.className = `btn ${inCart ? "in-cart" : "not-in-cart"}`;
     button.innerText = inCart ? "Added" : "Add To Cart";
 }
+
 
 /*
  * This function retrieves the user's cart from localStorage and displays each item
@@ -138,14 +140,25 @@ function setupCart() {
             parentNode.appendChild(newCardDivNode);
         }
     }
+    if (cart.length === 0) { // empty cart
+        const newNode = document.createElement("h2");
+        newNode.innerText = "Cart is empty."
+        parentNode.appendChild(newNode);
 
-    const newTotalNode = document.createElement("h4");
-    newTotalNode.id = "cart-total";
-    newTotalNode.innerText = `Total: $` + total;
-    parentNode.append(newTotalNode);
+    } else { // cart total
+        const newTotalNode = document.createElement("h4");
+        newTotalNode.id = "cart-total";
+        newTotalNode.innerText = `Total: $` + total;
+        parentNode.append(newTotalNode);
+    }
+
     localStorage.setItem("userCart", JSON.stringify(cart));
 }
 
+
+/*
+* This function sets up the 'Total' inside of checkout 
+*/
 function setupCheckout() {
     // Create total text
     parentNode = document.getElementById("your-total");
@@ -158,20 +171,11 @@ function setupCheckout() {
         }
     }
     const newTotalNode = document.createElement("h4");
-    newTotalNode.id = "cart-total2";
+    newTotalNode.id = "checkout-total";
     newTotalNode.innerText = `Total: $` + total;
-    parentNode.append(newTotalNode); 
-    // Sets up the confirm button so you can only checkout if you have items in the cart and filled out all fields
-    const button = document.getElementById("confirm-btn");
-    button.addEventListener("click", () => {
-        // Checks if any inputs are empty
-        if (inputChecker() && total > 0) {
-            confirm()
-        }
-    });
-    
-    localStorage.setItem("userCart", JSON.stringify(cart));
+    parentNode.append(newTotalNode);
 }
+
 
 /*
 * This function checks if any inputs on the checkout form are empty, 
@@ -197,6 +201,8 @@ function inputChecker() {
     }
     return noBlanks;
 }
+
+
 /*
 * This function empties the user's cart.
 */
@@ -209,15 +215,23 @@ function empty() {
     while (parentNode.lastElementChild) {
         parentNode.removeChild(parentNode.lastElementChild);
     }
+
+    const newNode = document.createElement("h2");
+    newNode.innerText = "Cart is empty."
+    parentNode.appendChild(newNode);
+
 }
 
 /*
 * This function checks if the user's cart is empty.
 */
 function checkCart() {
-    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+    const cart = JSON.parse(localStorage.getItem("userCart"));
     if (cart.length === 0) {
-        alert("Please add items to your cart first.");
+        parentNode.innerHTML = "";
+        const newNode = document.createElement("h2");
+        newNode.innerText = "Add items to your cart before checking out."
+        parentNode.appendChild(newNode);
     } else {
         window.location.href = 'checkout2.html';
     }
@@ -227,12 +241,13 @@ function checkCart() {
 * This function saves and confirms the user's order.
 */
 function confirm() {
-    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
-    localStorage.setItem("order", JSON.stringify(Array.from(cart)));
-    window.location.href = 'checkout3.html';
-    empty();
+    if (inputChecker()) {
+        const cart = JSON.parse(localStorage.getItem("userCart"));
+        localStorage.setItem("order", JSON.stringify(Array.from(cart)));
+        window.location.href = 'checkout3.html';
+        empty();
+    } else return;
 }
 
 
 window.onload = setup;
-
