@@ -186,19 +186,19 @@ function inputChecker() {
         const alert = document.getElementById("alert_" + i);
         alert.innerText = ``;
     }
-    let noBlanks = true;
+    let filled = true;
     for (let i = 1; i < 15; i++) {
         // state input is optional since the country might not be the U.S.
         if ((i != 8)) {
             const inp = document.getElementById("input_" + i);
-            if (inp.value == "") {
-                noBlanks = false;
+            if (inp && inp.value == "") {
+                filled = false;
                 const alert = document.getElementById("alert_" + i);
                 alert.innerText = `This field is required`;
             }
         }
     }
-    return true;
+    return filled;
 }
 
 
