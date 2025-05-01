@@ -8,6 +8,10 @@ if (!localStorage.getItem("order")) {
     localStorage.setItem("order", JSON.stringify([]));
 }
 
+if (!localStorage.getItem("userInfo")) {
+    localStorage.setItem("userInfo", JSON.stringify([]));
+}
+
 
 /*
 * This function sets up the accessories, apparel, shoes, and checkout pages.
@@ -231,7 +235,17 @@ function setUpOrder() {
         }
     }
     // TODO, populate 'your-info' (order.html) with user info
+    const newCardDivNode = document.createElement("div");
+    newCardDivNode.className = "input-value m-2 p-2 d-flex align-items-center";
+    const newNameNode = document.createElement("h4");
+    const first = document.getElementById("input_2");
+    const last = document.getElementById("input_3");
+    newNameNode.innerText = first.value + last.value;
     parentNode = document.getElementById("your-info");
+    for (let i = 1; i < 15; i++) {
+        
+        
+    }
 }
 
 
@@ -284,7 +298,6 @@ function empty() {
 function checkCart() {
     const cart = JSON.parse(localStorage.getItem("userCart"));
     const parentNode = document.getElementById("your-cart");
-
     if (cart.length === 0) {
         parentNode.innerHTML = "";
         const newNode = document.createElement("h2");
@@ -303,6 +316,12 @@ function confirm() {
         const cart = JSON.parse(localStorage.getItem("userCart"));
         localStorage.setItem('userCart', JSON.stringify([]));
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
+        const info = JSON.parse(localStorage.getItem("userInfo"));
+        for (let i = 1; i < 15; i++) {
+            const inp = document.getElementById("input_" + i);
+            info.add(inp.value);
+        }
+        localStorage.setItem("userInfo", JSON.stringify(Array.from(info)));
         window.location.href = 'order.html';
     } else return;
 }
