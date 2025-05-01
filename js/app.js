@@ -167,7 +167,7 @@ function setupCheckout() {
     button.addEventListener("click", () => {
         // Checks if any inputs are empty
         if (inputChecker() && total > 0) {
-            empty()
+            confirm()
             window.location.href = "http://127.0.0.1:3000/p10/checkout/checkout3.html";
         }
     });
