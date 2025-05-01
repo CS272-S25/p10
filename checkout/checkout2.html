@@ -31,17 +31,20 @@
                 <a href="checkout.html" title="Cart" class="btn btn-light btn-sm">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
-
             </div>
+
         </nav>
     </div>
 
-    <section class="m-3">
+    <section class="m-3 mt-4">
         <h2>Checkout</h2>
-        <div id="checkout-form">
-            <h3>Email</h3>
+        <div id="info-form mt-5">
+            <div class="w-100 bg-light mb-4" style="height: 3px;"></div>
+
+            <h4>Email</h4>
             <input type="email" id="email" name="email" placeholder="Email Address" />
-            <h3>Shipping</h3>
+
+            <h4 class="mt-2">Shipping</h4>
             <input type="text" id="firstName" name="firstName" placeholder="First Name" />
             <input type="text" id="lastName" name="lastName" placeholder="Last Name" />
             <input type="tel" id="phone" name="phone" placeholder="Phone Number (xxx-xxx-xxxx)" />
@@ -50,7 +53,7 @@
             <input type="text" id="city" name="city" placeholder="City" />
             <!-- State list taken from https://www.freeformatter.com/usa-state-list-html-select.html-->
             <select id="state" name="state">
-                <option value=" state link page" >State*</option>
+                <option value=" state link page">State*</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -107,7 +110,7 @@
             <input type="number" id="zip" name="zip" placeholder="ZIP Code" />
             <!-- Country list taken from https://gist.github.com/danrovito/977bcb97c9c2dfd3398a -->
             <select id="country" name="country">
-                <option value=" country link page" >Country</option>
+                <option value=" country link page">Country</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -237,7 +240,8 @@
                 <option value="Lithuania">Lithuania</option>
                 <option value="Luxembourg">Luxembourg</option>
                 <option value="Macao">Macao</option>
-                <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of
+                </option>
                 <option value="Madagascar">Madagascar</option>
                 <option value="Malawi">Malawi</option>
                 <option value="Malaysia">Malaysia</option>
@@ -310,7 +314,8 @@
                 <option value="Solomon Islands">Solomon Islands</option>
                 <option value="Somalia">Somalia</option>
                 <option value="South Africa">South Africa</option>
-                <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich
+                    Islands</option>
                 <option value="Spain">Spain</option>
                 <option value="Sri Lanka">Sri Lanka</option>
                 <option value="Sudan">Sudan</option>
@@ -353,25 +358,26 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
-            <h3>Payment Info</h3>
-                <p>Accepted Cards</p>
-                <div class="icon-container">
-                  <i class="fa-brands fa-cc-visa" style="color:navy;"></i>
-                  <i class="fa-brands fa-cc-amex" style="color:blue;"></i>
-                  <i class="fa-brands fa-cc-mastercard" style="color:red;"></i>
-                  <i class="fa-brands fa-cc-discover" style="color:orange;"></i>
-                </div>
-                <p>Name on Card</p>
-                <input type="text" id="cardName" name="cardName" placeholder="Name">
-                <p>Card Number</p>
-                <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
-                <p>Exp Month/Year</p>
-                <input type="month" id="expDate" name="expDate" placeholder="Exp. Month">
-                <p>CVV</p>
-                <input type="number" id="cvv" name="cvv" placeholder="xxx">
-              </div>
-        <div class="container">
-            <a class="link" href="checkout3.html">Confirm</a>
+
+            <h4 class="mt-2">Payment Info</h4>
+            <p>Accepted Cards</p>
+            <div class="icon-container">
+                <i class="fa-brands fa-cc-visa" style="color:navy;"></i>
+                <i class="fa-brands fa-cc-amex" style="color:blue;"></i>
+                <i class="fa-brands fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa-brands fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <p>Name on Card</p>
+            <input type="text" id="cardName" name="cardName" placeholder="Name">
+            <p>Card Number</p>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx">
+            <p>Exp Month/Year</p>
+            <input type="month" id="expDate" name="expDate" placeholder="Exp. Month">
+            <p>CVV</p>
+            <input type="number" id="cvv" name="cvv" placeholder="xxx">
+        </div>
+        <div class="d-flex justify-content-center mt-5 mb-4">
+            <a href="checkout3.html" class="btn btn-primary">Confirm</a>
         </div>
     </section>
 
