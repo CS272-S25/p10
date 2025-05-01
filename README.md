@@ -8,5 +8,8 @@ TODO:
 4. Format input form.
 
 Other ideas:
-1. Show order details in order.html (order saved under order in localStorage).
+1. Show order details in order.html (order saved in localStorage).
 2. Add functionality for editing product quanitity.
+
+
+Note to instructor: I had the wrong email set in my Git config so my old commits don't show under 'hgzlz2' contributor. -Ulises
