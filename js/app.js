@@ -25,10 +25,10 @@ function setup() {
     } else if (url.includes("shoes.html")) {
         start = 8;
         end = 12;
-    } else if (url.includes("checkout.html")) {
+    } else if (url.includes("cart.html")) {
         setupCart();
         return;
-    } else if (url.includes("checkout2.html")) {
+    } else if (url.includes("checkout.html")) {
         setupCheckout();
         return;
     }
@@ -113,7 +113,7 @@ function setupCart() {
             textWrapper.appendChild(newBrandNode);
             textWrapper.appendChild(newPriceNode);
 
-            // Button
+            // Remove button
             const newButtonNode = document.createElement("button");
             newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
 
@@ -144,7 +144,6 @@ function setupCart() {
         const newNode = document.createElement("h2");
         newNode.innerText = "Cart is empty."
         parentNode.appendChild(newNode);
-
     } else { // cart total
         const newTotalNode = document.createElement("h4");
         newTotalNode.id = "cart-total";
@@ -199,7 +198,7 @@ function inputChecker() {
             }
         }
     }
-    return noBlanks;
+    return true;
 }
 
 
@@ -233,7 +232,7 @@ function checkCart() {
         newNode.innerText = "Add items to your cart before checking out."
         parentNode.appendChild(newNode);
     } else {
-        window.location.href = 'checkout2.html';
+        window.location.href = 'checkout.html';
     }
 }
 
@@ -244,7 +243,7 @@ function confirm() {
     if (inputChecker()) {
         const cart = JSON.parse(localStorage.getItem("userCart"));
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
-        window.location.href = 'checkout3.html';
+        window.location.href = 'order.html';
         empty();
     } else return;
 }
