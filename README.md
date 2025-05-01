@@ -14,11 +14,13 @@ TODO:
 Other work:
 1. Show order details in order.html (order saved in localStorage).
     - Currently only showing order items, need user info.
-2. Add functionality for editing product quanitity.
-3. Make inputting state required if the country is the U.S., and optional otherwise
-4. Make sure inputs follow the given format (card number takes 16 numbers, etc.)
+2. Make sure inputs follow the given format (card number takes 16 numbers, etc.)
     - The checkout form should be using form-control (bootstrap classes).
-5. Fix responsiveness on mobile.
+3. Make inputting state required if the country is the U.S., and optional otherwise
+4. Fix responsiveness on mobile.
+5. Add functionality for editing product quanitity.
+
+
 
 
 Note to instructor: I had the wrong email set in my Git config so my old 
