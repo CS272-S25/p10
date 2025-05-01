@@ -1,5 +1,5 @@
 # CS472 Group Project 
-# Group 10: Ulises, Sam, & Jack
+Group 10: Ulises, Sam, & Jack
 
 TODO:
 1. ~~Make sure localStorage (cart) is not cleared until detail confirmation.~~
