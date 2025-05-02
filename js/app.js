@@ -52,8 +52,11 @@ function setup() {
         const button = document.getElementById(buttonId);
         const formId = "form " + item.id;
         const form = document.getElementById(formId);
-        localStorage.setItem(formId, JSON.stringify(0));
-
+        if (!localStorage.getItem(formId) || localStorage.getItem(formId) == "") {
+            localStorage.setItem(formId, 0);
+        } else {
+            form.value = localStorage.getItem(formId);
+        }
         if (!button) continue;
 
         updateCartButton(button, item.id, cart);
@@ -62,19 +65,23 @@ function setup() {
             if (cart.has(item.id)) {
                 cart.delete(item.id);
                 form.value = 0;
-                localStorage.setItem(formId, JSON.stringify(0));
+                localStorage.setItem(formId, 0);
             } else {
                 cart.add(item.id);
                 if (form.value == 0) {
                     form.value = 1;
-                    localStorage.setItem(formId, JSON.stringify(1));
+                    localStorage.setItem(formId, 1);
                 }
             }
             updateCartButton(button, item.id, cart);
             localStorage.setItem("userCart", JSON.stringify(Array.from(cart)));
         });
         form.addEventListener("input", () => {
-            localStorage.setItem(formId, JSON.stringify(form.value));
+            if (!localStorage.getItem(formId) || localStorage.getItem(formId) == "") {
+                localStorage.setItem(formId, 0);
+            } else {
+                localStorage.setItem(formId, form.value);
+            }
         })
     }
 }
