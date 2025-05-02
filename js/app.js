@@ -264,6 +264,16 @@ function setupOrder() {
             textWrapper.appendChild(newNameNode);
             newCardDivNode.appendChild(textWrapper);
             i++;
+        } else if (i == 11) {
+            // censors the first 12 digits of the card number
+            const newNameNode = document.createElement("h5");
+            const card = info[11];
+            newNameNode.innerText = "************" + card.substring(12);
+            const textWrapper = document.createElement("div");
+            textWrapper.className = "info-text";
+            textWrapper.appendChild(newNameNode);
+            newCardDivNode.appendChild(textWrapper);
+
         } else {
             const newNameNode = document.createElement("h5");
             const inp = info[i];
