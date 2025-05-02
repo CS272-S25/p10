@@ -297,11 +297,21 @@ function inputChecker() {
 
             // runs digitChecker() if the input is supposed to be a number
             const dig = ((i == 4 || i == 9 || i == 12 || i == 14) ? digitChecker(i) : true);
-            if (inp && dig && (inp.value == "" || inp.value == "state link page" || inp.value == "N/A")) {
+            if (inp && (!dig || (inp.value == "" || inp.value == "state link page" || inp.value == "N/A"))) {
                 valid = false; 
                 //valid = true; // for testing only
                 const alert = document.getElementById("alert_" + i);
-                alert.innerText = `This field is required`;
+                if (!dig && i == 4) {
+                    alert.innerText = `Phone numbers must be 10 digits`;
+                } else if (!dig && i == 9) {
+                    alert.innerText = `ZIP codes must be 5 digits`;
+                } else if (!dig && i == 12) {
+                    alert.innerText = `Card numbers must be 16 digits`;
+                } else if (!dig && i == 14) {
+                    alert.innerText = `CVV must be 3 digits`;
+                } else {
+                    alert.innerText = `This field is required`;
+                }
             }
         }
     }
