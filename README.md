@@ -16,7 +16,7 @@ Other work:
     ~~- Currently only showing order items, need user info.~~
 2. Make sure inputs follow the given format (card number takes 16 numbers, etc.)
     ~~- The checkout form should be using form-control (bootstrap classes).~~
-3. Make inputting state required if the country is the U.S., and optional otherwise
+3. ~~Make inputting state required if the country is the U.S., and optional otherwise~~
 4. Fix responsiveness on mobile.
 5. Add functionality for editing product quanitity.
 

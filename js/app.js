@@ -292,9 +292,9 @@ function inputChecker() {
     let valid = true;
     for (let i = 1; i < 15; i++) {
         // state input is optional since the country might not be the U.S.
-        if ((i != 8 && i != 6)) {
+        if ((i != 6) && (i == 8 ? (document.getElementById("input_10").value == "United States") : true)) {
             const inp = document.getElementById("input_" + i);
-            if (inp && inp.value == "") {
+            if (inp && (inp.value == "" || inp.value == "state link page" || inp.value == "N/A")) {
                 valid = false; 
                 //valid = true; // for testing only
                 const alert = document.getElementById("alert_" + i);
