@@ -118,60 +118,60 @@ function setupCart() {
             }
             for (let j = 0; j < amount; j++) {
                 // Create card container with flexbox layout
-            const newCardDivNode = document.createElement("div");
-            newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
+                const newCardDivNode = document.createElement("div");
+                newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
 
-            // Image
-            const newImgNode = document.createElement("img");
-            newImgNode.className = "cart-img m-3";
-            newImgNode.src = ITEMS[i].image;
-            newImgNode.alt = ITEMS[i].name;
-            newImgNode.style.maxWidth = "100px";
-            newImgNode.style.height = "auto";
+                // Image
+                const newImgNode = document.createElement("img");
+                newImgNode.className = "cart-img m-3";
+                newImgNode.src = ITEMS[i].image;
+                newImgNode.alt = ITEMS[i].name;
+                newImgNode.style.maxWidth = "100px";
+                newImgNode.style.height = "auto";
 
-            // Text content (name, brand, price)
-            const newNameNode = document.createElement("h4");
-            newNameNode.innerText = `${ITEMS[i].name}`;
+                // Text content (name, brand, price)
+                const newNameNode = document.createElement("h4");
+                newNameNode.innerText = `${ITEMS[i].name}`;
 
-            const newBrandNode = document.createElement("h5");
-            newBrandNode.innerText = `${ITEMS[i].brand}`;
+                const newBrandNode = document.createElement("h5");
+                newBrandNode.innerText = `${ITEMS[i].brand}`;
 
-            const newPriceNode = document.createElement("h5");
-            newPriceNode.innerText = `${ITEMS[i].price}`;
+                const newPriceNode = document.createElement("h5");
+                newPriceNode.innerText = `${ITEMS[i].price}`;
 
-            // Add text content to card
-            const textWrapper = document.createElement("div");
-            textWrapper.className = "cart-text";
+                // Add text content to card
+                const textWrapper = document.createElement("div");
+                textWrapper.className = "cart-text";
 
-            textWrapper.appendChild(newNameNode);
-            textWrapper.appendChild(newBrandNode);
-            textWrapper.appendChild(newPriceNode);
+                textWrapper.appendChild(newNameNode);
+                textWrapper.appendChild(newBrandNode);
+                textWrapper.appendChild(newPriceNode);
 
-            // Remove button
-            const newButtonNode = document.createElement("button");
-            newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
+                // Remove button
+                const newButtonNode = document.createElement("button");
+                newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
 
-            newButtonNode.addEventListener("click", function () {
-                // Remove item from cart 
-                const updatedCart = cart.filter(id => id !== ITEMS[i].id);
-                // Update localStorage
-                localStorage.setItem("userCart", JSON.stringify(updatedCart));
-                // Refresh cart 
-                setupCart();
-            });
+                newButtonNode.addEventListener("click", function () {
+                    // Remove item from cart 
+                    const updatedCart = cart.splice(cart.indexOf(ITEMS[i].id), 1);
+                    // Update localStorage
+                    localStorage.setItem("userCart", JSON.stringify(updatedCart));
+                    // Refresh cart 
+                    setupCart();
+                });
 
-            // Add btn to card
-            const btnWrapper = document.createElement("div");
-            btnWrapper.className = 'ms-auto'
-            btnWrapper.appendChild(newButtonNode);
+                // Add btn to card
+                const btnWrapper = document.createElement("div");
+                btnWrapper.className = 'ms-auto'
+                btnWrapper.appendChild(newButtonNode);
 
-            // Append image, text, and btn to card cont.
-            newCardDivNode.appendChild(newImgNode);
-            newCardDivNode.appendChild(textWrapper);
-            newCardDivNode.appendChild(btnWrapper);
+                // Append image, text, and btn to card cont.
+                newCardDivNode.appendChild(newImgNode);
+                newCardDivNode.appendChild(textWrapper);
+                newCardDivNode.appendChild(btnWrapper);
 
-            // Add card to the parent
-            parentNode.appendChild(newCardDivNode);   
+                // Add card to the parent
+                parentNode.appendChild(newCardDivNode);   
             }
         }
     }
