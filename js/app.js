@@ -15,8 +15,8 @@ if (!localStorage.getItem("userInfo")) {
 
 /*
 * This function sets up the accessories, apparel, shoes, and checkout pages.
-* For accessories, apparel, and shoes, it adds event listeners to buttons,
-* allowing users to add/remove items from the cart.
+* For accessories, apparel, and shoes, it adds event listeners to buttons and forms,
+* allowing users to add/remove items from the cart and change their quantities.
 * For the checkout page, it calls setupCart() to display the items.
 */
 function setup() {
@@ -45,12 +45,14 @@ function setup() {
     }
 
     let cart = new Set(JSON.parse(localStorage.getItem("userCart")));
-
     // this loop sets up buttons based on the start and end values set above
     for (let i = start; i < end; i++) {
         const item = ITEMS[i];
         const buttonId = "add-btn " + item.id;
         const button = document.getElementById(buttonId);
+        const formId = "form " + item.id;
+        const form = document.getElementById(formId);
+        localStorage.setItem(formId, JSON.stringify(0));
 
         if (!button) continue;
 
@@ -59,13 +61,21 @@ function setup() {
         button.addEventListener("click", () => {
             if (cart.has(item.id)) {
                 cart.delete(item.id);
+                form.value = 0;
+                localStorage.setItem(formId, JSON.stringify(0));
             } else {
                 cart.add(item.id);
+                if (form.value == 0) {
+                    form.value = 1;
+                    localStorage.setItem(formId, JSON.stringify(1));
+                }
             }
-
             updateCartButton(button, item.id, cart);
             localStorage.setItem("userCart", JSON.stringify(Array.from(cart)));
         });
+        form.addEventListener("input", () => {
+            localStorage.setItem(formId, JSON.stringify(form.value));
+        })
     }
 }
 
@@ -91,11 +101,16 @@ function setupCart() {
     parentNode.innerHTML = "";
     let cart = JSON.parse(localStorage.getItem("userCart"));
     let total = 0;
+    let amount = 0;
     for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
             total += parseInt(ITEMS[i].price.replace('$', ''));
-
-            // Create card container with flexbox layout
+            amount = document.getElementById("form " + ITEMS[i].id).value;
+            if (!amount || amount == "") {
+                amount = 1;
+            }
+            for (let j = 0; j < amount; j++) {
+                // Create card container with flexbox layout
             const newCardDivNode = document.createElement("div");
             newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
 
@@ -149,7 +164,8 @@ function setupCart() {
             newCardDivNode.appendChild(btnWrapper);
 
             // Add card to the parent
-            parentNode.appendChild(newCardDivNode);
+            parentNode.appendChild(newCardDivNode);   
+            }
         }
     }
     if (cart.length === 0) { // empty cart
