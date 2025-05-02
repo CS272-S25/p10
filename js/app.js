@@ -50,7 +50,7 @@ function setup() {
         const item = ITEMS[i];
         const buttonId = "add-btn " + item.id;
         const button = document.getElementById(buttonId);
-        const formId = "form " + item.id;
+        const formId = "form_" + item.id;
         const form = document.getElementById(formId);
         if (!localStorage.getItem(formId) || localStorage.getItem(formId) == "") {
             localStorage.setItem(formId, 0);
@@ -110,7 +110,7 @@ function setupCart() {
     let amount = 0;
     for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
-            amount = localStorage.getItem("form " + ITEMS[i].id);
+            amount = localStorage.getItem("form_" + ITEMS[i].id);
             if (!amount || amount == "") {
                 amount = 1;
             }
@@ -158,7 +158,7 @@ function setupCart() {
                         amount = 0;
                     }
                     // Update localStorage
-                    localStorage.setItem("form " + ITEMS[i].id, (localStorage.getItem("form " + ITEMS[i].id) - 1));
+                    localStorage.setItem("form_" + ITEMS[i].id, (localStorage.getItem("form_" + ITEMS[i].id) - 1));
                     // Refresh cart 
                     parentNode.innerHTML = "";
                     setupCart();
@@ -216,7 +216,8 @@ function getTotal() {
     let total = 0;
     for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
-            total += parseInt(ITEMS[i].price.replace('$', ''));
+            let amt = JSON.parse(localStorage.getItem('form_' + ITEMS[i].id));
+            total += amt * parseInt(ITEMS[i].price.replace('$', ''));
         }
     }
     return total;
@@ -398,8 +399,8 @@ function empty() {
     parentNode.appendChild(newNode);
 
     // Set userCart to an empty array (but keep key)
-    localStorage.setItem('userCart', JSON.stringify([]));
     reset();
+    localStorage.setItem('userCart', JSON.stringify([]));
 }
 
 
@@ -417,7 +418,7 @@ function reset() {
                 input.value = 0;
             }
             // Clear from localStorage
-            localStorage.removeItem("form " + item);
+            localStorage.removeItem("form_" + item);
         }
     }
 }
