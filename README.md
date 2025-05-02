@@ -14,7 +14,7 @@ TODO:
 Other work:
 1. ~~Show order details in order.html (order saved in localStorage).~~
     ~~- Currently only showing order items, need user info.~~
-2. Make sure inputs follow the given format (card number takes 16 numbers, etc.)
+2. ~~Make sure inputs follow the given format (card number takes 16 numbers, etc.)~~
     ~~- The checkout form should be using form-control (bootstrap classes).~~
 3. ~~Make inputting state required if the country is the U.S., and optional otherwise~~
 4. Fix responsiveness on mobile.

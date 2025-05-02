@@ -294,7 +294,10 @@ function inputChecker() {
         // state input is optional since the country might not be the U.S.
         if ((i != 6) && (i == 8 ? (document.getElementById("input_10").value == "United States") : true)) {
             const inp = document.getElementById("input_" + i);
-            if (inp && (inp.value == "" || inp.value == "state link page" || inp.value == "N/A")) {
+
+            // runs digitChecker() if the input is supposed to be a number
+            const dig = ((i == 4 || i == 9 || i == 12 || i == 14) ? digitChecker(i) : true);
+            if (inp && dig && (inp.value == "" || inp.value == "state link page" || inp.value == "N/A")) {
                 valid = false; 
                 //valid = true; // for testing only
                 const alert = document.getElementById("alert_" + i);
@@ -305,7 +308,27 @@ function inputChecker() {
     return valid;
 }
 
-
+/*
+* This function checks that the inputs for phone number, ZIP code, card number, and CVV have the required digits
+*/
+function digitChecker(num) {
+    let regex;
+    if (num == 4) {
+        // phone number is 10 digits
+        regex = /^\d{10}$/;
+    } else if (num == 9) {
+        // ZIP code is 5 digits
+        regex = /^\d{5}$/;
+    } else if (num == 12) {
+        // card number is 16 digits
+        regex = /^\d{16}$/;
+    } else if (num == 14) {
+        // CVV is 3 digits
+        regex = /^\d{3}$/;
+    }
+    const inp = document.getElementById("input_" + i);
+    return (inp.value.match(regex));
+}
 /*
 * This function empties the user's cart.
 */
