@@ -152,11 +152,15 @@ function setupCart() {
                 newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
 
                 newButtonNode.addEventListener("click", function () {
-                    // Remove item from cart 
-                    const updatedCart = cart.splice(cart.indexOf(ITEMS[i].id), 1);
+                    // Remove item from cart
+                    if (amount == 1) {
+                        const updatedCart = cart.filter(id => id !== ITEMS[i].id);
+                        localStorage.setItem("userCart", JSON.stringify(updatedCart));
+                    } 
                     // Update localStorage
-                    localStorage.setItem("userCart", JSON.stringify(updatedCart));
+                    localStorage.setItem("form " + ITEMS[i].id, (localStorage.getItem("form " + ITEMS[i].id) - 1));
                     // Refresh cart 
+                    parentNode.innerHTML = "";
                     setupCart();
                 });
 
