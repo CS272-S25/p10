@@ -336,9 +336,15 @@ function confirm() {
         localStorage.setItem('userCart', JSON.stringify([]));
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
         const info = JSON.parse(localStorage.getItem("userInfo"));
+        alert("test 1")
         for (let i = 1; i < 15; i++) {
             const inp = document.getElementById("input_" + i);
-            info.add(inp.value);
+            if (inp) {
+                alert("test 1." + i + " " + inp.value)
+                info.push(inp.value);
+            } else {
+                info.push("");
+            }
         }
         localStorage.setItem("userInfo", JSON.stringify(Array.from(info)));
         window.location.href = 'order.html';
