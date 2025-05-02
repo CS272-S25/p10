@@ -40,7 +40,7 @@ function setup() {
         setupCheckout();
         return;
     } else if (url.includes("order.html")) {
-        setUpOrder();
+        setupOrder();
         return;
     }
 
@@ -189,7 +189,7 @@ function setupCheckout() {
 /*
 * This function sets up the order details inside of order.html.
 */
-function setUpOrder() {
+function setupOrder() {
     let parentNode = document.getElementById("your-order");
     parentNode.innerHTML = "";
     let order = JSON.parse(localStorage.getItem("order"));
@@ -239,28 +239,39 @@ function setUpOrder() {
     
     parentNode = document.getElementById("your-info");
     const info = JSON.parse(localStorage.getItem("userInfo"));
-    for (let i = 1; i < 15; i++) {
-        if (i < 3) {
+    alert(info[6])
+    for (let i = 0; i < 14; i++) {
+        if (i == 1) {
             // makes sure first and last name are on one line
             const newNameNode = document.createElement("h4");
-            const first = info[1].value;
-            const last = info[2].value;
+            const first = info[1];
+            const last = info[2];
             newNameNode.innerText = first + " " + last;
-            newCardDivNode.appendChild(newNameNode);
+            alert(newNameNode.innerText)
+            const textWrapper = document.createElement("div");
+            textWrapper.className = "info-text";
+            textWrapper.appendChild(newNameNode);
+            newCardDivNode.appendChild(textWrapper);
             i++;
-        } else if (i == 7) {
+        } else if (i == 6) {
             // makes sure city and state are on one line
             const newNameNode = document.createElement("h5");
-            const city = info[7].value;
-            const state = info[8].value;
+            const city = info[6];
+            const state = info[7];
             newNameNode.innerText = city + " " + state;
-            newCardDivNode.appendChild(newNameNode);
+            const textWrapper = document.createElement("div");
+            textWrapper.className = "info-text";
+            textWrapper.appendChild(newNameNode);
+            newCardDivNode.appendChild(textWrapper);
             i++;
         } else {
             const newNameNode = document.createElement("h5");
-            const inp = info[i].value;
+            const inp = info[i];
             newNameNode.innerText = inp;
-            newCardDivNode.appendChild(newNameNode);
+            const textWrapper = document.createElement("div");
+            textWrapper.className = "info-text";
+            textWrapper.appendChild(newNameNode);
+            newCardDivNode.appendChild(textWrapper);
         }
         
     }
