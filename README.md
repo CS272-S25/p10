@@ -8,7 +8,7 @@ TODO:
 2. ~~Don't allow checkout without items in cart.~~
 3. ~~Don't allow checkout confirmation without missing fields.~~
 4. ~~Make inputting apartment/suite number optional~~
-5. Finish formatting input form.
+5. ~~Finish formatting input form.~~
 
 
 Other work:
