@@ -18,7 +18,7 @@ Other work:
     ~~- The checkout form should be using form-control (bootstrap classes).~~
 3. ~~Make inputting state required if the country is the U.S., and optional otherwise~~
 4. ~~Fix responsiveness on mobile.~~
-5. Add functionality for editing product quanitity.
+5. ~~Add functionality for editing product quanitity.~~
 
 
 
