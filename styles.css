@@ -221,3 +221,8 @@ a.link:active {
     background-color: crimson;
     color: black
 }
+
+.input-wrapper {
+    width: 100%;
+    max-width: 50px;
+}
