@@ -105,7 +105,7 @@ function setupCart() {
     for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
             total += parseInt(ITEMS[i].price.replace('$', ''));
-            amount = document.getElementById("form " + ITEMS[i].id).value;
+            amount = localStorage.getItem("form " + ITEMS[i].id);
             if (!amount || amount == "") {
                 amount = 1;
             }
