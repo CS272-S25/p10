@@ -111,12 +111,12 @@ function setupCart() {
     let amount = 0;
     for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
-            total += parseInt(ITEMS[i].price.replace('$', ''));
             amount = localStorage.getItem("form " + ITEMS[i].id);
             if (!amount || amount == "") {
                 amount = 1;
             }
             for (let j = 0; j < amount; j++) {
+                total += parseInt(ITEMS[i].price.replace('$', ''));
                 // Create card container with flexbox layout
                 const newCardDivNode = document.createElement("div");
                 newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
