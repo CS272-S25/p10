@@ -169,6 +169,9 @@ function setupCart() {
 * This function sets up the 'Total' inside of checkout 
 */
 function setupCheckout() {
+
+    //removes info from previous order
+    localStorage.setItem("userInfo", JSON.stringify([]));
     // Create total text
     const parentNode = document.getElementById("your-total");
     parentNode.innerHTML = "";
@@ -344,11 +347,9 @@ function confirm() {
         localStorage.setItem('userCart', JSON.stringify([]));
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
         const info = JSON.parse(localStorage.getItem("userInfo"));
-        alert("test 1")
         for (let i = 1; i < 15; i++) {
             const inp = document.getElementById("input_" + i);
             if (inp) {
-                alert("test 1." + i + " " + inp.value)
                 info.push(inp.value);
             } else {
                 info.push("");
