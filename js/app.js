@@ -109,12 +109,11 @@ function setupCart() {
     let cart = JSON.parse(localStorage.getItem("userCart"));
     let amount = 0;
     for (let i = 0; i < ITEMS.length; i++) {
-        if (cart.includes(ITEMS[i].id)) {
-            amount = localStorage.getItem("form_" + ITEMS[i].id);
-            if (!amount || amount == "") {
-                amount = 1;
-            }
-            for (let j = 0; j < amount; j++) {
+        const itemId = ITEMS[i].id
+        if (cart.includes(itemId)) {
+            amount = JSON.parse(localStorage.getItem("form_" + itemId));
+            //console.log(amount);
+            for (let j = 0; j < amount; j++) { // build cart according to item amount
 
                 // Create card container with flexbox layout
                 const newCardDivNode = document.createElement("div");
@@ -131,54 +130,48 @@ function setupCart() {
                 // Text content (name, brand, price)
                 const newNameNode = document.createElement("h4");
                 newNameNode.innerText = `${ITEMS[i].name}`;
-
                 const newBrandNode = document.createElement("h5");
                 newBrandNode.innerText = `${ITEMS[i].brand}`;
-
                 const newPriceNode = document.createElement("h5");
                 newPriceNode.innerText = `${ITEMS[i].price}`;
 
                 // Add text content to card
                 const textWrapper = document.createElement("div");
                 textWrapper.className = "cart-text";
-
                 textWrapper.appendChild(newNameNode);
                 textWrapper.appendChild(newBrandNode);
                 textWrapper.appendChild(newPriceNode);
 
-                // create delete button
+                // CART DELETE BUTTON (only deletes from localStorage)
                 const newButtonNode = document.createElement("button");
                 newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
 
                 newButtonNode.addEventListener("click", function () {
-                    // Remove item from cart
-                    if (amount == 1) {
-                        const updatedCart = cart.filter(id => id !== ITEMS[i].id);
+                    amount = JSON.parse(localStorage.getItem("form_" + itemId));
+                    //console.log(amount)
+                    if (amount == 1) { // if amount is 1, remove item type from cart (localStorage)
+                        const updatedCart = cart.filter(id => id !== itemId);
                         localStorage.setItem("userCart", JSON.stringify(updatedCart));
-                        amount = 0;
                     }
-                    // Update localStorage
-                    localStorage.setItem("form_" + ITEMS[i].id, (localStorage.getItem("form_" + ITEMS[i].id) - 1));
-                    // Refresh cart 
-                    parentNode.innerHTML = "";
-                    setupCart();
+                    // localStorage item amount -= 1
+                    localStorage.setItem("form_" + itemId, amount - 1);
+                    setupCart(); // Refresh cart 
                 });
 
-                // Add btn to card
+                // Add delete btn to end of card
                 const btnWrapper = document.createElement("div");
                 btnWrapper.className = 'ms-auto'
                 btnWrapper.appendChild(newButtonNode);
-
                 // Append image, text, and btn to card cont.
                 newCardDivNode.appendChild(newImgNode);
                 newCardDivNode.appendChild(textWrapper);
                 newCardDivNode.appendChild(btnWrapper);
-
-                // Add card to the parent
+                // Add card cont. to the parent
                 parentNode.appendChild(newCardDivNode);
             }
         }
     }
+
     if (cart.length === 0) { // empty cart
         const newNode = document.createElement("h2");
         newNode.innerText = "Cart is empty."
