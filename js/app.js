@@ -189,8 +189,6 @@ function setupCart() {
 * This function sets up the 'Total' inside of checkout 
 */
 function setupCheckout() {
-    //removes info from previous order
-    localStorage.setItem("userInfo", JSON.stringify([]));
     // Create total text
     const parentNode = document.getElementById("your-total");
     parentNode.innerHTML = "";
@@ -438,6 +436,8 @@ function checkCart() {
 */
 function confirm() {
     if (inputChecker()) {
+         //removes info from previous order
+        localStorage.setItem("userInfo", JSON.stringify([]));
         const cart = JSON.parse(localStorage.getItem("userCart")); // save cart
         total = getTotal(); // get total before calling reset
         reset(); // call reset before before clearing cart
