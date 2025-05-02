@@ -326,7 +326,7 @@ function digitChecker(num) {
         // CVV is 3 digits
         regex = /^\d{3}$/;
     }
-    const inp = document.getElementById("input_" + i);
+    const inp = document.getElementById("input_" + num);
     return (inp.value.match(regex));
 }
 /*
