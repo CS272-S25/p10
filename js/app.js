@@ -235,11 +235,9 @@ function setupOrder() {
         }
     }
     const newCardDivNode = document.createElement("div");
-    newCardDivNode.className = "input-value m-2 p-2 d-flex align-items-center";
-    
+    newCardDivNode.className = "input-value m-2 p-2 d-flex flex-column align-items-start";
     parentNode = document.getElementById("your-info");
     const info = JSON.parse(localStorage.getItem("userInfo"));
-    alert(info[6])
     for (let i = 0; i < 14; i++) {
         if (i == 1) {
             // makes sure first and last name are on one line
@@ -247,7 +245,6 @@ function setupOrder() {
             const first = info[1];
             const last = info[2];
             newNameNode.innerText = first + " " + last;
-            alert(newNameNode.innerText)
             const textWrapper = document.createElement("div");
             textWrapper.className = "info-text";
             textWrapper.appendChild(newNameNode);
