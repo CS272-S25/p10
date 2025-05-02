@@ -107,7 +107,6 @@ function setupCart() {
     const parentNode = document.getElementById("your-cart");
     parentNode.innerHTML = "";
     let cart = JSON.parse(localStorage.getItem("userCart"));
-    let total = 0;
     let amount = 0;
     for (let i = 0; i < ITEMS.length; i++) {
         if (cart.includes(ITEMS[i].id)) {
@@ -116,7 +115,7 @@ function setupCart() {
                 amount = 1;
             }
             for (let j = 0; j < amount; j++) {
-                total += parseInt(ITEMS[i].price.replace('$', ''));
+
                 // Create card container with flexbox layout
                 const newCardDivNode = document.createElement("div");
                 newCardDivNode.className = "cart-item m-2 p-2 d-flex align-items-center";
@@ -147,7 +146,7 @@ function setupCart() {
                 textWrapper.appendChild(newBrandNode);
                 textWrapper.appendChild(newPriceNode);
 
-                // Remove button
+                // create delete button
                 const newButtonNode = document.createElement("button");
                 newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
 
@@ -156,7 +155,8 @@ function setupCart() {
                     if (amount == 1) {
                         const updatedCart = cart.filter(id => id !== ITEMS[i].id);
                         localStorage.setItem("userCart", JSON.stringify(updatedCart));
-                    } 
+                        amount = 0;
+                    }
                     // Update localStorage
                     localStorage.setItem("form " + ITEMS[i].id, (localStorage.getItem("form " + ITEMS[i].id) - 1));
                     // Refresh cart 
@@ -175,7 +175,7 @@ function setupCart() {
                 newCardDivNode.appendChild(btnWrapper);
 
                 // Add card to the parent
-                parentNode.appendChild(newCardDivNode);   
+                parentNode.appendChild(newCardDivNode);
             }
         }
     }
@@ -186,7 +186,7 @@ function setupCart() {
     } else { // cart total
         const newTotalNode = document.createElement("h4");
         newTotalNode.id = "cart-total";
-        newTotalNode.innerText = `Total: $` + total;
+        newTotalNode.innerText = `Total: $` + getTotal();
         parentNode.append(newTotalNode);
     }
 }
@@ -196,12 +196,22 @@ function setupCart() {
 * This function sets up the 'Total' inside of checkout 
 */
 function setupCheckout() {
-
     //removes info from previous order
     localStorage.setItem("userInfo", JSON.stringify([]));
     // Create total text
     const parentNode = document.getElementById("your-total");
     parentNode.innerHTML = "";
+    const newTotalNode = document.createElement("h4");
+    newTotalNode.id = "checkout-total";
+    newTotalNode.innerText = `Total: $` + getTotal();
+    parentNode.append(newTotalNode);
+}
+
+
+/*
+* Helper function for getting userCart total.
+*/
+function getTotal() {
     let cart = JSON.parse(localStorage.getItem("userCart"));
     let total = 0;
     for (let i = 0; i < ITEMS.length; i++) {
@@ -209,10 +219,7 @@ function setupCheckout() {
             total += parseInt(ITEMS[i].price.replace('$', ''));
         }
     }
-    const newTotalNode = document.createElement("h4");
-    newTotalNode.id = "checkout-total";
-    newTotalNode.innerText = `Total: $` + total;
-    parentNode.append(newTotalNode);
+    return total;
 }
 
 
@@ -268,10 +275,10 @@ function setupOrder() {
     newCardDivNode.className = "input-value m-2 p-2 d-flex flex-column align-items-start";
     parentNode = document.getElementById("your-info");
     const info = JSON.parse(localStorage.getItem("userInfo"));
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < info.length; i++) {
         if (i == 1) {
             // makes sure first and last name are on one line
-            const newNameNode = document.createElement("h4");
+            const newNameNode = document.createElement("h5");
             const first = info[1];
             const last = info[2];
             newNameNode.innerText = first + " " + last;
@@ -285,7 +292,7 @@ function setupOrder() {
             const newNameNode = document.createElement("h5");
             const city = info[6];
             const state = info[7];
-            newNameNode.innerText = city + " " + state;
+            newNameNode.innerText = city + ", " + state;
             const textWrapper = document.createElement("div");
             textWrapper.className = "info-text";
             textWrapper.appendChild(newNameNode);
@@ -310,7 +317,6 @@ function setupOrder() {
             textWrapper.appendChild(newNameNode);
             newCardDivNode.appendChild(textWrapper);
         }
-        
     }
     parentNode.appendChild(newCardDivNode);
 }
@@ -335,7 +341,7 @@ function inputChecker() {
             // runs digitChecker() if the input is supposed to be a number
             const dig = ((i == 4 || i == 9 || i == 12 || i == 14) ? digitChecker(i) : true);
             if (inp && (!dig || (inp.value == "" || inp.value == "state link page" || inp.value == "N/A"))) {
-                valid = false; 
+                valid = false;
                 //valid = true; // for testing only
                 const alert = document.getElementById("alert_" + i);
                 if (!dig && i == 4) {
@@ -355,8 +361,9 @@ function inputChecker() {
     return valid;
 }
 
+
 /*
-* This function checks that the inputs for phone number, ZIP code, card number, and CVV have the required digits
+* This function checks that the inputs for phone number, ZIP code, card number, and CVV have the required digits.
 */
 function digitChecker(num) {
     let regex;
@@ -376,24 +383,48 @@ function digitChecker(num) {
     const inp = document.getElementById("input_" + num);
     return (inp.value.match(regex));
 }
+
+
 /*
-* This function empties the user's cart.
+* Helper function for emptying user's cart.
 */
-function empty() {    
+function empty() {
     // Clear visual cart items from DOM
     const parentNode = document.getElementById("your-cart");
     parentNode.innerHTML = '';
-    
+
     const newNode = document.createElement("h2");
     newNode.innerText = "Cart is empty."
     parentNode.appendChild(newNode);
 
     // Set userCart to an empty array (but keep key)
     localStorage.setItem('userCart', JSON.stringify([]));
+    reset();
 }
 
+
 /*
-* This function checks if the user's cart is empty.
+* Helper function to reset quantity inputs and clear them from localStorage.
+*/
+function reset() {
+    let cart = JSON.parse(localStorage.getItem("userCart"));
+    for (let i = 0; i < ITEMS.length; i++) {
+        if (cart.includes(ITEMS[i].id)) {
+            const item = ITEMS[i].id;
+            // Clear input fields in DOM
+            const input = document.getElementById("form_" + item);
+            if (input) {
+                input.value = 0;
+            }
+            // Clear from localStorage
+            localStorage.removeItem("form " + item);
+        }
+    }
+}
+
+
+/*
+* Helper function that checks if the user's cart is empty.
 */
 function checkCart() {
     const cart = JSON.parse(localStorage.getItem("userCart"));
@@ -409,15 +440,18 @@ function checkCart() {
 }
 
 /*
-* This function saves and confirms the user's order.
+* Helper function that saves and confirms the user's order.
 */
 function confirm() {
     if (inputChecker()) {
-        const cart = JSON.parse(localStorage.getItem("userCart"));
+        const cart = JSON.parse(localStorage.getItem("userCart")); // save cart
+        reset(); // call reset before before clearing cart
+        total = getTotal(); // get total before clearing cart
         localStorage.setItem('userCart', JSON.stringify([]));
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
         const info = JSON.parse(localStorage.getItem("userInfo"));
-        for (let i = 1; i < 15; i++) {
+        for (let i = 1; i < 16; i++) {
+            if (i === 14) continue; // omit cvv
             const inp = document.getElementById("input_" + i);
             if (inp) {
                 info.push(inp.value);
@@ -425,6 +459,7 @@ function confirm() {
                 info.push("");
             }
         }
+        info.push("Total: $" + total); // add total
         localStorage.setItem("userInfo", JSON.stringify(Array.from(info)));
         window.location.href = 'order.html';
     } else return;
