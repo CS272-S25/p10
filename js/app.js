@@ -446,9 +446,9 @@ function checkCart() {
 function confirm() {
     if (inputChecker()) {
         const cart = JSON.parse(localStorage.getItem("userCart")); // save cart
+        total = getTotal(); // get total before calling reset
         reset(); // call reset before before clearing cart
-        total = getTotal(); // get total before clearing cart
-        localStorage.setItem('userCart', JSON.stringify([]));
+        localStorage.setItem('userCart', JSON.stringify([])); // clear cart
         localStorage.setItem("order", JSON.stringify(Array.from(cart)));
         const info = JSON.parse(localStorage.getItem("userInfo"));
         for (let i = 1; i < 16; i++) {
