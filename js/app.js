@@ -111,7 +111,7 @@ function setupCart() {
     for (let i = 0; i < ITEMS.length; i++) {
         const itemId = ITEMS[i].id
         if (cart.includes(itemId)) {
-            amount = JSON.parse(localStorage.getItem("form_" + itemId));
+            amount = localStorage.getItem("form_" + itemId);
             //console.log(amount);
             for (let j = 0; j < amount; j++) { // build cart according to item amount
 
@@ -147,7 +147,7 @@ function setupCart() {
                 newButtonNode.className = "btn btn-md fa-solid fa-xmark remove-btn";
 
                 newButtonNode.addEventListener("click", function () {
-                    amount = JSON.parse(localStorage.getItem("form_" + itemId));
+                    amount = localStorage.getItem("form_" + itemId);
                     //console.log(amount)
                     if (amount == 1) { // if amount is 1, remove item type from cart (localStorage)
                         const updatedCart = cart.filter(id => id !== itemId);
